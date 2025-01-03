@@ -3,6 +3,7 @@ from django import forms
 from django.contrib import admin
 
 from river.models import Function
+from river.models import Channel
 
 
 class FunctionForm(forms.ModelForm):
@@ -23,3 +24,4 @@ class FunctionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Function, FunctionAdmin)
+admin.site.register(Channel)
