@@ -5,6 +5,8 @@ class Channel(models.Model):
     template = models.CharField(max_length=500, blank=False)
 
     class Meta:
+        app_label = 'river'
+        verbose_name = "Channel"
         verbose_name_plural = "Channels"
 
     def __str__(self):
