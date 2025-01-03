@@ -15,6 +15,8 @@ class Function(BaseModel):
     body = models.TextField(verbose_name=_("Function Body"), max_length=100000, null=False, blank=False)
     version = models.IntegerField(verbose_name=_("Function Version"), default=0)
 
+    channel = models.ForeignKey("Channel", verbose_name=_("Channel"), related_name="functions", null=True, on_delete=models.CASCADE)
+
     def __str__(self):
         return "%s - %s" % (self.name, "v%s" % self.version)
 
