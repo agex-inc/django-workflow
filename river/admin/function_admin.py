@@ -21,7 +21,10 @@ class FunctionAdmin(admin.ModelAdmin):
 
     def function_version(self, obj):  # pylint: disable=no-self-use
         return "v%s" % obj.version
+    
+class ChannelAdmin(admin.ModelAdmin):
+    list_display = ('name', 'template')
 
 
 admin.site.register(Function, FunctionAdmin)
-admin.site.register(Channel)
+admin.site.register(Channel, ChannelAdmin)
