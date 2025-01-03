@@ -2,7 +2,7 @@ from django.db import models
 
 class Channel(models.Model):
     name = models.CharField(max_length=100)
-    template = models.CharField(blank=False)
+    template = models.CharField(max_length=500, blank=False)
 
     class Meta:
         verbose_name_plural = "Channels"
