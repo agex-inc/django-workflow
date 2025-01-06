@@ -3,7 +3,6 @@ from django import forms
 from django.contrib import admin
 
 from river.models import Function
-from river.models import Channel
 
 
 class FunctionForm(forms.ModelForm):
@@ -11,12 +10,12 @@ class FunctionForm(forms.ModelForm):
 
     class Meta:
         model = Function
-        fields = ('name', 'body',)
+        fields = ('name', 'body', 'channel')
 
 
 class FunctionAdmin(admin.ModelAdmin):
     form = FunctionForm
-    list_display = ('name', 'function_version', 'date_created', 'date_updated')
+    list_display = ('name', 'function_version', 'date_created', 'date_updated', 'channel')
     readonly_fields = ('version', 'date_created', 'date_updated')
 
     def function_version(self, obj):  # pylint: disable=no-self-use
