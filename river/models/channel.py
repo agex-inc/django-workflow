@@ -12,3 +12,6 @@ class Channel(models.Model):
 
     def __str__(self):
         return self.name.capitalize()
+    
+    def render_template(self, **kwargs):
+        return self.template.format(**kwargs)
