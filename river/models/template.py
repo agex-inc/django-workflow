@@ -4,7 +4,7 @@ class Template(models.Model):
     name = models.CharField(max_length=100)
     text = models.TextField()
     channel = models.ForeignKey('Channel', on_delete=models.CASCADE)
-    actor = models.ForeignKey('Actor', null=True, on_delete=models.CASCADE)
+    actor = models.ForeignKey('Actor', null=True, blank=True, on_delete=models.CASCADE)
 
     class Meta:
         app_label = 'river'
