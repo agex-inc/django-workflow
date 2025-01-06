@@ -10,12 +10,12 @@ class FunctionForm(forms.ModelForm):
 
     class Meta:
         model = Function
-        fields = ('name', 'body', 'channel')
+        fields = ('name', 'body', 'template')
 
 
 class FunctionAdmin(admin.ModelAdmin):
     form = FunctionForm
-    list_display = ('name', 'function_version', 'date_created', 'date_updated', 'channel')
+    list_display = ('name', 'function_version', 'date_created', 'date_updated', 'template')
     readonly_fields = ('version', 'date_created', 'date_updated')
 
     def function_version(self, obj):  # pylint: disable=no-self-use

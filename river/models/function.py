@@ -14,8 +14,7 @@ class Function(BaseModel):
     name = models.CharField(verbose_name=_("Function Name"), max_length=200, unique=True, null=False, blank=False)
     body = models.TextField(verbose_name=_("Function Body"), max_length=100000, null=False, blank=False)
     version = models.IntegerField(verbose_name=_("Function Version"), default=0)
-
-    channel = models.ForeignKey("Channel", verbose_name=_("Channel"), related_name="functions", null=True, blank=True, on_delete=models.CASCADE)
+    template = models.ForeignKey("Template", verbose_name=_("Template"), related_name="functions", null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s - %s" % (self.name, "v%s" % self.version)
