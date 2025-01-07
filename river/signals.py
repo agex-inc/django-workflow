@@ -83,6 +83,7 @@ class ApproveSignal(object):
         self.transition_approval = transition_approval
         self.content_type = ContentType.objects.get_for_model(self.workflow_object.__class__)
         self.workflow = Workflow.objects.get(content_type=self.content_type, field_name=self.field_name)
+        print("Init for the approve signal")
 
     def __enter__(self):
         for hook in OnApprovedHook.objects.filter(
