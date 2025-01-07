@@ -42,7 +42,7 @@ class TransitionSignal(object):
                         hook_type=BEFORE
                     )
             ):
-                hook.execute(self._get_context(BEFORE))
+                hook.execute(self._get_context(BEFORE), hook)
 
             LOGGER.debug("The signal that is fired right before the transition ( %s ) happened for %s"
                          % (self.transition_approval.transition, self.workflow_object))
@@ -58,11 +58,11 @@ class TransitionSignal(object):
                         hook_type=AFTER
                     )
             ):
-                hook.execute(self._get_context(AFTER))
+                hook.execute(self._get_context(AFTER, hook))
             LOGGER.debug("The signal that is fired right after the transition ( %s) happened for %s"
                          % (self.transition_approval.transition, self.workflow_object))
 
-    def _get_context(self, when):
+    def _get_context(self, when, hook):
         return {
             "hook": {
                 "type": "on-transit",
@@ -70,7 +70,8 @@ class TransitionSignal(object):
                 "payload": {
                     "workflow": self.workflow,
                     "workflow_object": self.workflow_object,
-                    "transition_approval": self.transition_approval
+                    "transition_approval": self.transition_approval,
+                    "function": hook.callback_function
                 }
             },
         }
@@ -115,7 +116,7 @@ class ApproveSignal(object):
                     transition_approval_meta=self.transition_approval.meta,
                 )
         ):
-            hook.execute(self._get_context(AFTER))
+            hook.execute(self._get_context(AFTER, hook))
 
         LOGGER.debug("The signal that is fired right after a transition approval is approved for %s due to transition %s -> %s" % (
             self.workflow_object, self.transition_approval.transition.source_state.label, self.transition_approval.transition.destination_state.label))
@@ -153,7 +154,7 @@ class OnCompleteSignal(object):
                         hook_type=BEFORE
                     )
             ):
-                hook.execute(self._get_context(BEFORE))
+                hook.execute(self._get_context(BEFORE, hook))
             LOGGER.debug("The signal that is fired right before the workflow of %s is complete" % self.workflow_object)
 
     def __exit__(self, type, value, traceback):
@@ -165,10 +166,10 @@ class OnCompleteSignal(object):
                         hook_type=AFTER
                     )
             ):
-                hook.execute(self._get_context(AFTER))
+                hook.execute(self._get_context(AFTER, hook))
             LOGGER.debug("The signal that is fired right after the workflow of %s is complete" % self.workflow_object)
 
-    def _get_context(self, when):
+    def _get_context(self, when, hook):
         return {
             "hook": {
                 "type": "on-complete",
@@ -176,6 +177,7 @@ class OnCompleteSignal(object):
                 "payload": {
                     "workflow": self.workflow,
                     "workflow_object": self.workflow_object,
+                    "function": hook.callback_function
                 }
             },
         }
