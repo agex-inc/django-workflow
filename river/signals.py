@@ -116,17 +116,29 @@ class ApproveSignal(object):
         # ):
         #     print("Executing the hook, after")
         #     hook.execute(self._get_context(AFTER))
-        for hook in OnApprovedHook.objects.filter(
-                (Q(object_id__isnull=True) | Q(object_id=self.workflow_object.pk, content_type=self.content_type)) &
-                (Q(transition_approval__isnull=True) | Q(transition_approval=self.transition_approval)) &
-                Q(
-                    # workflow__field_name=self.field_name,
-                    # transition_approval_meta=self.transition_approval.meta,
-                    hook_type=AFTER
-                )
-        ):
+        # for hook in OnApprovedHook.objects.filter(
+        #         (Q(object_id__isnull=True) | Q(object_id=self.workflow_object.pk, content_type=self.content_type)) &
+        #         (Q(transition_approval__isnull=True) | Q(transition_approval=self.transition_approval)) &
+        #         Q(
+        #             # workflow__field_name=self.field_name,
+        #             # transition_approval_meta=self.transition_approval.meta,
+        #             hook_type=AFTER
+        #         )
+        # ):
+        #     print("Executing the hook, after")
+        #     hook.execute(self._get_context(AFTER))
+
+
+        for hook in OnApprovedHook.objects.all():
+            print("object_id", hook.object_id)
+            print("content_type", hook.content_type)
+            print("self.workflow_object.pk", self.workflow_object.pk)
+            print("transition_approval", hook.transition_approval)
+            print("self.transition_approval", self.transition_approval)
+            print("hookType", hook.hook_type)
             print("Executing the hook, after")
             hook.execute(self._get_context(AFTER))
+
         LOGGER.debug("The signal that is fired right after a transition approval is approved for %s due to transition %s -> %s" % (
             self.workflow_object, self.transition_approval.transition.source_state.label, self.transition_approval.transition.destination_state.label))
 
