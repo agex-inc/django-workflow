@@ -120,7 +120,7 @@ class ApproveSignal(object):
         LOGGER.debug("The signal that is fired right after a transition approval is approved for %s due to transition %s -> %s" % (
             self.workflow_object, self.transition_approval.transition.source_state.label, self.transition_approval.transition.destination_state.label))
 
-    def _get_context(self, when):
+    def _get_context(self, when, hook):
         return {
             "hook": {
                 "type": "on-approved",
@@ -128,7 +128,8 @@ class ApproveSignal(object):
                 "payload": {
                     "workflow": self.workflow,
                     "workflow_object": self.workflow_object,
-                    "transition_approval": self.transition_approval
+                    "transition_approval": self.transition_approval,
+                    "function": hook.callback_function
                 }
             },
         }
