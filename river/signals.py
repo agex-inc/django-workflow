@@ -86,7 +86,8 @@ class ApproveSignal(object):
         print("Init for the approve signal")
 
 #  Unncomment this to enable the before signal
-    # def __enter__(self):
+    def __enter__(self):
+        pass
     #     print("Enter for the approve signal")
     #     for hook in OnApprovedHook.objects.filter(
     #             (Q(object_id__isnull=True) | Q(object_id=self.workflow_object.pk, content_type=self.content_type)) &
