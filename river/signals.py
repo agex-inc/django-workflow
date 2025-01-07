@@ -104,7 +104,7 @@ class ApproveSignal(object):
 
     def __exit__(self, type, value, traceback):
         print("Exit for the approve signal")
-        print(OnApprovedHook.objects)
+        print(OnApprovedHook.objects.count())
         for hook in OnApprovedHook.objects.filter(
                 (Q(object_id__isnull=True) | Q(object_id=self.workflow_object.pk, content_type=self.content_type)) &
                 (Q(transition_approval__isnull=True) | Q(transition_approval=self.transition_approval)) &
