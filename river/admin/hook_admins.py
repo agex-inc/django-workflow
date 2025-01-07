@@ -31,10 +31,9 @@ class OnCompleteHookInline(BaseHookInline):
 
 class DefaultWorkflowModelAdmin(admin.ModelAdmin):
     inlines = [
-        # We don't need these inlines for now
-        # OnApprovedHookInline,
-        # OnTransitHookInline,
-        # OnCompleteHookInline
+        OnApprovedHookInline,
+        OnTransitHookInline,
+        OnCompleteHookInline
     ]
 
     def __init__(self, *args, **kwargs):
