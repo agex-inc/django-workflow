@@ -33,6 +33,7 @@ class Hook(BaseModel):
     hook_type = models.CharField(_('When?'), choices=HOOK_TYPES, max_length=50)
 
     def execute(self, context):
+        print("Trying to execute the function")
         try:
             self.callback_function.get()(context)
         except Exception as e:
