@@ -85,22 +85,23 @@ class ApproveSignal(object):
         self.workflow = Workflow.objects.get(content_type=self.content_type, field_name=self.field_name)
         print("Init for the approve signal")
 
-    def __enter__(self):
-        print("Enter for the approve signal")
-        for hook in OnApprovedHook.objects.filter(
-                (Q(object_id__isnull=True) | Q(object_id=self.workflow_object.pk, content_type=self.content_type)) &
-                (Q(transition_approval__isnull=True) | Q(transition_approval=self.transition_approval)) &
-                Q(
-                    workflow__field_name=self.field_name,
-                    transition_approval_meta=self.transition_approval.meta,
-                    hook_type=BEFORE
-                )
-        ):
-            print("Executing the hook, before")
-            hook.execute(self._get_context(BEFORE))
+#  Unncomment this to enable the before signal
+    # def __enter__(self):
+    #     print("Enter for the approve signal")
+    #     for hook in OnApprovedHook.objects.filter(
+    #             (Q(object_id__isnull=True) | Q(object_id=self.workflow_object.pk, content_type=self.content_type)) &
+    #             (Q(transition_approval__isnull=True) | Q(transition_approval=self.transition_approval)) &
+    #             Q(
+    #                 workflow__field_name=self.field_name,
+    #                 transition_approval_meta=self.transition_approval.meta,
+    #                 hook_type=BEFORE
+    #             )
+    #     ):
+    #         print("Executing the hook, before")
+    #         hook.execute(self._get_context(BEFORE))
 
-        LOGGER.debug("The signal that is fired right before a transition approval is approved for %s due to transition %s -> %s" % (
-            self.workflow_object, self.transition_approval.transition.source_state.label, self.transition_approval.transition.destination_state.label))
+    #     LOGGER.debug("The signal that is fired right before a transition approval is approved for %s due to transition %s -> %s" % (
+    #         self.workflow_object, self.transition_approval.transition.source_state.label, self.transition_approval.transition.destination_state.label))
 
     def __exit__(self, type, value, traceback):
         print("Exit for the approve signal")
@@ -111,10 +112,8 @@ class ApproveSignal(object):
                 Q(
                     workflow__field_name=self.field_name,
                     transition_approval_meta=self.transition_approval.meta,
-                    hook_type=AFTER
                 )
         ):
-            print("Executing the hook, after")
             hook.execute(self._get_context(AFTER))
         # for hook in OnApprovedHook.objects.filter(
         #         (Q(object_id__isnull=True) | Q(object_id=self.workflow_object.pk, content_type=self.content_type)) &
