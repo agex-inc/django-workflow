@@ -30,7 +30,7 @@ class Hook(BaseModel):
     object_id = models.CharField(max_length=200, blank=True, null=True)
     workflow_object = GenericForeignKey('content_type', 'object_id')
 
-    hook_type = models.CharField(_('When?'), choices=HOOK_TYPES, default=HOOK_TYPES[1], max_length=50)
+    hook_type = models.CharField(_('When?'), choices=HOOK_TYPES, max_length=50)
 
     def execute(self, context):
         try:

@@ -48,11 +48,12 @@ class RiverApp(AppConfig):
     def _register_hook_inlines(self, model):  # pylint: disable=no-self-use
         from django.contrib import admin
         from river.core.workflowregistry import workflow_registry
-        from river.admin import OnApprovedHookInline, DefaultWorkflowModelAdmin
+        from river.admin import OnApprovedHookInline, OnTransitHookInline, OnCompleteHookInline, DefaultWorkflowModelAdmin
 
         registered_admin = admin.site._registry.get(model, None)
         if registered_admin:
             if OnApprovedHookInline not in registered_admin.inlines:
+                registered_admin.inlines = list(set(list(registered_admin.inlines) + [OnApprovedHookInline, OnTransitHookInline, OnCompleteHookInline]))
                 registered_admin.readonly_fields = list(set(list(registered_admin.readonly_fields) + list(workflow_registry.get_class_fields(model))))
                 admin.site._registry[model] = registered_admin
         else:
