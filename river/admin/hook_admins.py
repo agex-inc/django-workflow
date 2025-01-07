@@ -31,6 +31,7 @@ class OnCompleteHookInline(BaseHookInline):
 
 class DefaultWorkflowModelAdmin(admin.ModelAdmin):
     inlines = [
+        # We don't need these inlines for now
         # OnApprovedHookInline,
         # OnTransitHookInline,
         # OnCompleteHookInline
