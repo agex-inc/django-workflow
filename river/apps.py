@@ -13,7 +13,6 @@ class RiverApp(AppConfig):
     label = 'river'
 
     def ready(self):
-        print("RiverApp initializing app")
         for field_name in self._get_all_workflow_fields():
             try:
                 workflows = self.get_model('Workflow').objects.filter(field_name=field_name)

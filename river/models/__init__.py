@@ -12,3 +12,4 @@ from .on_complete_hook import *
 from .channel import *
 from .template import *
 from .actor import *
+from .notification_template import *
