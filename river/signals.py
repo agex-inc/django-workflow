@@ -84,7 +84,6 @@ class ApproveSignal(object):
         self.transition_approval = transition_approval
         self.content_type = ContentType.objects.get_for_model(self.workflow_object.__class__)
         self.workflow = Workflow.objects.get(content_type=self.content_type, field_name=self.field_name)
-        print("Init for the approve signal")
 
 #  Unncomment this to enable the before signal
     def __enter__(self):
@@ -106,8 +105,6 @@ class ApproveSignal(object):
     #         self.workflow_object, self.transition_approval.transition.source_state.label, self.transition_approval.transition.destination_state.label))
 
     def __exit__(self, type, value, traceback):
-        print("Exit for the approve signal")
-        print(OnApprovedHook.objects.count())
         for hook in OnApprovedHook.objects.filter(
                 (Q(object_id__isnull=True) | Q(object_id=self.workflow_object.pk, content_type=self.content_type)) &
                 (Q(transition_approval__isnull=True) | Q(transition_approval=self.transition_approval)) &
