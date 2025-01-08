@@ -12,7 +12,7 @@ class Template(models.Model):
         verbose_name_plural = "Templates"
 
     def __str__(self):
-        return self.name.capitalize() + '-' + self.channel.name.capitalize() + '-' + self.actor.name.capitalize()
+        return self.name.capitalize()
     
     def render_template(self, **kwargs):
         return self.template.format(**kwargs)
