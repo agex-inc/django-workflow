@@ -7,8 +7,8 @@ class NotificationTemplate(models.Model):
 
     class Meta:
         app_label = 'river'
-        verbose_name = "NotificationTemplate"
-        verbose_name_plural = "NotificationTemplates"
+        verbose_name = "Notification Template"
+        verbose_name_plural = "Notification Templates"
 
     def __str__(self):
         return self.function.name + " - " + self.template.name
