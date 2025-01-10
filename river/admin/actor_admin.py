@@ -1,7 +1,14 @@
+from django import forms
 from django.contrib import admin
 from river.models import Actor
 
+class ActorForm(forms.ModelForm):
+    class Meta:
+        model = Actor
+        fields = ('name',)
+
 class ActorAdmin(admin.ModelAdmin):
+    form = ActorForm
     def has_add_permission(self, request):
         return False
 
