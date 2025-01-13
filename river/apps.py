@@ -11,6 +11,7 @@ LOGGER = logging.getLogger(__name__)
 class RiverApp(AppConfig):
     name = 'Workflow Configuration'
     label = 'Workflow Configuration'
+    verbose_name = 'Workflow Configuration'
 
     def ready(self):
         for field_name in self._get_all_workflow_fields():
