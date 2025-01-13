@@ -1,28 +1,28 @@
-.. |Build Status| image:: https://travis-ci.org/javrasya/django-river.svg
-    :target: https://travis-ci.org/javrasya/django-river
+.. |Build Status| image:: https://travis-ci.org/javrasya/django-workflow_config.svg
+    :target: https://travis-ci.org/javrasya/django-workflow_config
 
-.. |Coverage Status| image:: https://coveralls.io/repos/javrasya/django-river/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/javrasya/django-river?branch=master
+.. |Coverage Status| image:: https://coveralls.io/repos/javrasya/django-workflow_config/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/javrasya/django-workflow_config?branch=master
 
-.. |Health Status| image:: https://landscape.io/github/javrasya/django-river/master/landscape.svg?style=flat
-    :target: https://landscape.io/github/javrasya/django-river/master
+.. |Health Status| image:: https://landscape.io/github/javrasya/django-workflow_config/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/javrasya/django-workflow_config/master
    :alt: Code Health
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/django-river/badge/?version=latest
-    :target: https://readthedocs.org/projects/django-river/?badge=latest
+.. |Documentation Status| image:: https://readthedocs.org/projects/django-workflow_config/badge/?version=latest
+    :target: https://readthedocs.org/projects/django-workflow_config/?badge=latest
 
 .. |Quality Status| image:: https://api.codacy.com/project/badge/Grade/c3c73d157fe045e6b966d8d4416b6b17
    :alt: Codacy Badge
-   :target: https://app.codacy.com/app/javrasya/django-river?utm_source=github.com&utm_medium=referral&utm_content=javrasya/django-river&utm_campaign=Badge_Grade_Dashboard
+   :target: https://app.codacy.com/app/javrasya/django-workflow_config?utm_source=github.com&utm_medium=referral&utm_content=javrasya/django-workflow_config&utm_campaign=Badge_Grade_Dashboard
 
-.. |Downloads| image:: https://img.shields.io/pypi/dm/django-river
+.. |Downloads| image:: https://img.shields.io/pypi/dm/django-workflow_config
     :alt: PyPI - Downloads
 
 .. |Discord| image:: https://img.shields.io/discord/651433240019599400
     :target: https://discord.gg/DweUwZX
     :alt: Discord
 
-.. |Open Collective| image:: https://opencollective.com/django-river/all/badge.svg?label=financial+contributors
+.. |Open Collective| image:: https://opencollective.com/django-workflow_config/all/badge.svg?label=financial+contributors
     :alt: Financial Contributors
     :target: #contributors
 
@@ -33,14 +33,14 @@
 
 .. |Create Function Page| image:: docs/_static/create-function.png
 
-Django River
+Django WorkflowConfig
 ============
 
 |Logo|
 
 |Build Status| |Coverage Status| |Documentation Status| |Quality Status| |Downloads| |Discord|
 
-River is an open source workflow framework for ``Django`` which supports on
+WorkflowConfig is an open source workflow framework for ``Django`` which supports on
 the fly changes instead of hard-coding states, transitions and authorization rules.
 
 The main goal of developing this framework is **to be able to modify literally everything
@@ -48,14 +48,14 @@ about the workflows on the fly.** This means that all the elements in a workflow
 states, transitions or authorizations rules are editable at any time so that no changes
 requires a re-deploying of your application anymore.
 
-**Playground**: There is a fake jira example repository as a playground of django-river. https://github.com/javrasya/fakejira
+**Playground**: There is a fake jira example repository as a playground of django-workflow_config. https://github.com/javrasya/fakejira
 
 Donations
 ---------
 
 This is a fully open source project and it can be better with your donations.
 
-If you are using ``django-river`` to create a commercial product,
+If you are using ``django-workflow_config`` to create a commercial product,
 please consider becoming our `sponsor`_  , `patron`_ or donate over `PayPal`_
 
 .. _`patron`: https://www.patreon.com/javrasya
@@ -65,14 +65,14 @@ please consider becoming our `sponsor`_  , `patron`_ or donate over `PayPal`_
 Documentation
 -------------
 
-Online documentation is available at http://django-river.rtfd.org/
+Online documentation is available at http://django-workflow_config.rtfd.org/
 
 Advance Admin
 -------------
 
-A very modern admin with some user friendly interfaces that is called `River Admin`_ has been published.
+A very modern admin with some user friendly interfaces that is called `WorkflowConfig Admin`_ has been published.
 
-.. _`River Admin`: https://riveradminproject.com/
+.. _`WorkflowConfig Admin`: https://workflow_configadminproject.com/
 
 Requirements
 ------------
@@ -121,14 +121,14 @@ Usage
 
    .. code:: bash
 
-       pip install django-river
+       pip install django-workflow_config
 
 
    .. code:: python
 
        INSTALLED_APPS=[
            ...
-           river
+           workflow_config
            ...
        ]
 
@@ -137,7 +137,7 @@ Usage
     .. code:: python
 
         from django.db import models
-        from river.models.fields.state import StateField
+        from workflow_config.models.fields.state import StateField
 
         class MyModel(models.Model):
             my_state_field = StateField()
@@ -146,25 +146,25 @@ Usage
 4. Create a ``workflow`` with your model ( ``MyModel`` - ``my_state_field`` ) information on the admin page
 5. Create your ``transition metadata`` within the workflow created earlier, source and destination states
 6. Create your ``transition approval metadata`` within the workflow created earlier and authorization rules along with their priority on the admin page
-7. Enjoy your ``django-river`` journey.
+7. Enjoy your ``django-workflow_config`` journey.
 
     .. code-block:: python
 
         my_model=MyModel.objects.get(....)
 
-        my_model.river.my_state_field.approve(as_user=transactioner_user)
-        my_model.river.my_state_field.approve(as_user=transactioner_user, next_state=State.objects.get(label='re-opened'))
+        my_model.workflow_config.my_state_field.approve(as_user=transactioner_user)
+        my_model.workflow_config.my_state_field.approve(as_user=transactioner_user, next_state=State.objects.get(label='re-opened'))
 
         # and much more. Check the documentation
 
 .. note::
     Whenever a model object is saved, it's state field will be initialized with the
-    state is given at step-4 above by ``django-river``.
+    state is given at step-4 above by ``django-workflow_config``.
 
 Hooking Up With The Events
 --------------------------
 
-`django-river` provides you to have your custom code run on certain events. And since version v2.1.0 this has also been supported for on the fly changes. You can
+`django-workflow_config` provides you to have your custom code run on certain events. And since version v2.1.0 this has also been supported for on the fly changes. You can
 create your functions and also the hooks to a certain events by just creating few database items. Let's see what event types that can be hooked a function to;
 
 * An approval is approved
@@ -177,15 +177,15 @@ or you will possible have, or for a specific workflow object. You can also hook 
 1. Create Function
 ^^^^^^^^^^^^^^^^^^
 
-This will be the description of your functions. So you define them once and you can use them with multiple hooking up. Just go to ``/admin/river/function/`` admin page
-and create your functions there. ``django-river`` function admin support python code highlights.
+This will be the description of your functions. So you define them once and you can use them with multiple hooking up. Just go to ``/admin/workflow_config/function/`` admin page
+and create your functions there. ``django-workflow_config`` function admin support python code highlights.
 
    .. code:: python
 
        INSTALLED_APPS=[
            ...
            codemirror2
-           river
+           workflow_config
            ...
        ]
 
@@ -198,31 +198,31 @@ Here is an example function;
         def handle(context):
             print(datetime.now())
 
-**Important:** **YOUR FUNCTION SHOULD BE NAMED AS** ``handle``. Otherwise ``django-river`` won't execute your function.
+**Important:** **YOUR FUNCTION SHOULD BE NAMED AS** ``handle``. Otherwise ``django-workflow_config`` won't execute your function.
 
-``django-river`` will pass a ``context`` down to your function in order for you to know why the function is triggered or for which object or so. And the ``context`` will look different for
+``django-workflow_config`` will pass a ``context`` down to your function in order for you to know why the function is triggered or for which object or so. And the ``context`` will look different for
 different type of events. Please see detailed `context documentation`_ to know more on what you would get from context in your functions.
 
 You can find an `advance function example`_ on the link.
 
 |Create Function Page|
 
-.. _`context documentation`: https://django-river.readthedocs.io/en/latest/hooking/function.html#context-parameter
-.. _`advance function example`: https://django-river.readthedocs.io/en/latest/hooking/function.html#example-function
+.. _`context documentation`: https://django-workflow_config.readthedocs.io/en/latest/hooking/function.html#context-parameter
+.. _`advance function example`: https://django-workflow_config.readthedocs.io/en/latest/hooking/function.html#example-function
 
 2. Hook It Up
 ^^^^^^^^^^^^^
 
-The hookings in ``django-river`` can be created both specifically for a workflow object or for a whole workflow. ``django-river`` comes with some model objects and admin interfaces which you can use
+The hookings in ``django-workflow_config`` can be created both specifically for a workflow object or for a whole workflow. ``django-workflow_config`` comes with some model objects and admin interfaces which you can use
 to create the hooks.
 
 * To create one for whole workflow regardless of what the workflow object is, go to
 
-    * ``/admin/river/onapprovedhook/`` to hook up to an approval
-    * ``/admin/river/ontransithook/`` to hook up to a transition
-    * ``/admin/river/oncompletehook/`` to hook up to the completion of the workflow
+    * ``/admin/workflow_config/onapprovedhook/`` to hook up to an approval
+    * ``/admin/workflow_config/ontransithook/`` to hook up to a transition
+    * ``/admin/workflow_config/oncompletehook/`` to hook up to the completion of the workflow
 
-* To create one for a specific workflow object you should use the admin interface for the workflow object itself. One amazing feature of ``django-river`` is now that it creates a default admin interface with the hookings for your workflow model class. If you have already defined one, ``django-river`` enriches your already defined admin with the hooking section. It is default disabled. To enable it just define ``RIVER_INJECT_MODEL_ADMIN`` to be ``True`` in the ``settings.py``.
+* To create one for a specific workflow object you should use the admin interface for the workflow object itself. One amazing feature of ``django-workflow_config`` is now that it creates a default admin interface with the hookings for your workflow model class. If you have already defined one, ``django-workflow_config`` enriches your already defined admin with the hooking section. It is default disabled. To enable it just define ``WorkflowConfig_INJECT_MODEL_ADMIN`` to be ``True`` in the ``settings.py``.
 
 
 **Note:** They can programmatically be created as well since they are model objects. If it is needed to be at workflow level, just don't provide the workflow object column. If it is needed
@@ -237,7 +237,7 @@ Here are the list of hook models;
 Before Reporting A Bug
 ----------------------
 
-``django-river`` has behavioral tests that are very easy to read and write. One can easily set up one
+``django-workflow_config`` has behavioral tests that are very easy to read and write. One can easily set up one
 and see if everything is running as expected. Please look at other examples (that are the files with ``.feature`` postfix)
 under ``features`` folder that you can get all the inspiration and create one for yourself before you open an issue
 Then refer to your behavioral test to point out what is not function as expected to speed the process up for your own
@@ -249,32 +249,32 @@ Migrations
 2.X.X to 3.0.0
 ^^^^^^^^^^^^^^
 
-``django-river`` v3.0.0 comes with quite number of migrations, but the good news is that even though those are hard to determine kind of migrations, it comes with the required migrations
+``django-workflow_config`` v3.0.0 comes with quite number of migrations, but the good news is that even though those are hard to determine kind of migrations, it comes with the required migrations
 out of the box. All you need to do is to run;
 
 
    .. code:: bash
 
-       python manage.py migrate river
+       python manage.py migrate workflow_config
 
 3.1.X to 3.2.X
 ^^^^^^^^^^^^^^
 
-``django-river`` started to support **Microsoft SQL Server 17 and 19** after version 3.2.0 but the previous migrations didn't get along with it. We needed to reset all
+``django-workflow_config`` started to support **Microsoft SQL Server 17 and 19** after version 3.2.0 but the previous migrations didn't get along with it. We needed to reset all
 the migrations to have fresh start. If you have already migrated to version `3.1.X` all you need to do is to pull your migrations back to the beginning.
 
 
    .. code:: bash
 
-       python manage.py migrate --fake river zero
-       python manage.py migrate --fake river
+       python manage.py migrate --fake workflow_config zero
+       python manage.py migrate --fake workflow_config
 
 FAQ
 ---
 
 Have a look at `FAQ`_
 
-.. _`FAQ`: https://django-river.readthedocs.io/en/latest/faq.html
+.. _`FAQ`: https://django-workflow_config.readthedocs.io/en/latest/faq.html
 
 Contributors
 ============
@@ -284,8 +284,8 @@ Code Contributors
 
 This project exists thanks to all the people who contribute :rocket: :heart:
 
-.. image:: https://opencollective.com/django-river/contributors.svg?width=890&button=false
-    :target: https://github.com/javrasya/django-river/graphs/contributors
+.. image:: https://opencollective.com/django-workflow_config/contributors.svg?width=890&button=false
+    :target: https://github.com/javrasya/django-workflow_config/graphs/contributors
 
 Financial Contributors
 ----------------------
@@ -295,18 +295,18 @@ Become a financial contributor and help us sustain our community. Contribute_
 Individuals
 ^^^^^^^^^^^
 
-.. image:: https://opencollective.com/django-river/individuals.svg?width=890
-    :target: https://opencollective.com/django-river
+.. image:: https://opencollective.com/django-workflow_config/individuals.svg?width=890
+    :target: https://opencollective.com/django-workflow_config
 
 Organizations
 ^^^^^^^^^^^^^
 
 Support this project with your organization. Your logo will show up here with a link to your website. Contribute_
 
-.. image:: https://opencollective.com/django-river/organization/0/avatar.svg
-    :target: https://opencollective.com/django-river/organization/0/website
+.. image:: https://opencollective.com/django-workflow_config/organization/0/avatar.svg
+    :target: https://opencollective.com/django-workflow_config/organization/0/website
 
-.. _Contribute: https://opencollective.com/django-river
+.. _Contribute: https://opencollective.com/django-workflow_config
 
 .. _license:
 

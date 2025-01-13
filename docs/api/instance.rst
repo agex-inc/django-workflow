@@ -10,23 +10,23 @@ like in the example below;
 
         my_model=MyModel.objects.get(....)
         
-        my_model.river.my_state_field.<function>(*args)
+        my_model.workflow_config.my_state_field.<function>(*args)
 
 
 approve
 -------
 
-This is the function that helps you to approve next approval of the object easily. ``django-river`` will handle all
+This is the function that helps you to approve next approval of the object easily. ``django-workflow_config`` will handle all
 the availability and the authorization issues.
 
->>> my_model.river.my_state_field.approve(as_user=team_leader)
->>> my_model.river.my_state_field.approve(as_user=team_leader, next_state=State.objects.get(name='re_opened_state'))
+>>> my_model.workflow_config.my_state_field.approve(as_user=team_leader)
+>>> my_model.workflow_config.my_state_field.approve(as_user=team_leader, next_state=State.objects.get(name='re_opened_state'))
 
 +------------+-------+---------+------------+-------------+-----------------------------------------+
 |            | Type  | Default |  Optional  |   Format    |               Description               |
 +============+=======+=========+============+=============+=========================================+
 | as_user    | input | NaN     | False      | Django User | | A user to make the transaction.       |
-|            |       |         |            |             | | ``django-river`` will check           |
+|            |       |         |            |             | | ``django-workflow_config`` will check           |
 |            |       |         |            |             | | if this user is authorized to         |
 |            |       |         |            |             | | make next action by looking at        |
 |            |       |         |            |             | | this user's permissions and           |
@@ -37,11 +37,11 @@ the availability and the authorization issues.
 |            |       |         |            |             | | next state from the current           |
 |            |       |         |            |             | | state. But if there is multiple       |
 |            |       |         |            |             | | possible next state in place,         |
-|            |       |         |            |             | | ``django-river`` is naturally         |
+|            |       |         |            |             | | ``django-workflow_config`` is naturally         |
 |            |       |         |            |             | | is unable know which one is           |
 |            |       |         |            |             | | actually supposed to be picked.       |
 |            |       |         |            |             | | If the given next state is not        |
-|            |       |         |            |             | | a valid next state a `RiverException` |
+|            |       |         |            |             | | a valid next state a `WorkflowConfigException` |
 |            |       |         |            |             | | will be thrown.                       |
 +------------+-------+---------+------------+-------------+-----------------------------------------+
 
@@ -49,11 +49,11 @@ get_available_approvals
 -----------------------
 
 This is the function that helps you to fetch all available approvals waiting for a specific user according to given source and
-destination states. If the source state is not provided, ``django-river`` will pick the current objects source state.
+destination states. If the source state is not provided, ``django-workflow_config`` will pick the current objects source state.
 
->>> transition_approvals = my_model.river.my_state_field.get_available_approvals(as_user=manager)
->>> transition_approvals = my_model.river.my_state_field.get_available_approvals(as_user=manager, source_state=State.objects.get(name='in_progress'))
->>> transition_approvals = my_model.river.my_state_field.get_available_approvals(
+>>> transition_approvals = my_model.workflow_config.my_state_field.get_available_approvals(as_user=manager)
+>>> transition_approvals = my_model.workflow_config.my_state_field.get_available_approvals(as_user=manager, source_state=State.objects.get(name='in_progress'))
+>>> transition_approvals = my_model.workflow_config.my_state_field.get_available_approvals(
         as_user=manager, 
         source_state=State.objects.get(name='in_progress'),
         destination_state=State.objects.get(name='resolved'),
@@ -83,7 +83,7 @@ recent_approval
 
 This is a property that the transition approval which has recently been approved for the model object.
 
->>> transition_approval = my_model.river.my_state_field.last_approval
+>>> transition_approval = my_model.workflow_config.my_state_field.last_approval
 
 +--------+--------------------+-------------------------------------+
 |  Type  |       Format       |             Description             |
@@ -97,7 +97,7 @@ next_approvals
 
 This is a property that the list of transition approvals as a next step.
 
->>> transition_approvals == my_model.river.my_state_field.next_approvals
+>>> transition_approvals == my_model.workflow_config.my_state_field.next_approvals
 True
 
 +--------+--------------------------+--------------------------------------+
@@ -114,7 +114,7 @@ on_initial_state
 
 This is a property that indicates if object is on initial state.
 
->>> my_model.river.my_state_field.on_initial_state
+>>> my_model.workflow_config.my_state_field.on_initial_state
 True
 
 +--------+---------+------------------------------------+
@@ -128,7 +128,7 @@ on_final_state
 
 This is a property that indicates if object is on final state.
 
->>> my_model.river.my_state_field.on_final_state
+>>> my_model.workflow_config.my_state_field.on_final_state
 True
 
 +--------+---------+--------------------------------------+
@@ -147,7 +147,7 @@ from the current state of the workflow object. It is good for testing
 purposes.
 
 >>> in_progress_state = State.object.get(label="In Progress")
->>> transition_approvals = my_model.river.my_state_field.jump_to(in_progress_state)
+>>> transition_approvals = my_model.workflow_config.my_state_field.jump_to(in_progress_state)
 
 +-------------------+--------+--------------------------+------------------------------------------+
 |                   |  Type  |          Format          |               Description                |

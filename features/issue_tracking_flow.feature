@@ -1,4 +1,4 @@
-Feature: An example issue tracking flow that is set up with django-river
+Feature: An example issue tracking flow that is set up with django-workflow_config
 
   . POTENTIAL PROBLEM AREAS:
   .   * The workflow creation with all the components like states, transitions, authorization rules may have unexpected problems

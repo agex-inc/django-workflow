@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# django-river documentation build configuration file, created by
+# django-workflow_config documentation build configuration file, created by
 # sphinx-quickstart on Sun Aug 30 00:15:25 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django-river'
+project = u'django-workflow_config'
 copyright = u'2015, Ahmet DAL'
 author = u'Ahmet DAL'
 
@@ -202,7 +202,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'django-riverdoc'
+htmlhelp_basename = 'django-workflow_configdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -224,7 +224,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'django-river.tex', u'django-river Documentation',
+  (master_doc, 'django-workflow_config.tex', u'django-workflow_config Documentation',
    u'Ahmet DAL', 'manual'),
 ]
 
@@ -254,7 +254,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'django-river', u'django-river Documentation',
+    (master_doc, 'django-workflow_config', u'django-workflow_config Documentation',
      [author], 1)
 ]
 
@@ -268,8 +268,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'django-river', u'django-river Documentation',
-   author, 'django-river', 'One line description of project.',
+  (master_doc, 'django-workflow_config', u'django-workflow_config Documentation',
+   author, 'django-workflow_config', 'One line description of project.',
    'Miscellaneous'),
 ]
 

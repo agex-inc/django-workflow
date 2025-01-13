@@ -1,7 +1,7 @@
 ---
 exclude_paths:
-  - 'river/migrations/*'
+  - 'workflow_config/migrations/*'
   - '**/tests/**'
   - 'settings/**'
-  - 'river/sql/**/**'
+  - 'workflow_config/sql/**/**'
   - 'docs/conf.py'

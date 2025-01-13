@@ -1,4 +1,4 @@
-Feature: An example #159 Flow that is set up with django-river
+Feature: An example #159 Flow that is set up with django-workflow_config
 
   . POTENTIAL PROBLEM AREAS:
   .   * Short cyclic transitions are reported to have go in an infinite loop.

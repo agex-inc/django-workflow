@@ -1,4 +1,4 @@
-Feature: An example #162 Flow that is set up with django-river (https://github.com/javrasya/django-river/issues/162)
+Feature: An example #162 Flow that is set up with django-workflow_config (https://github.com/javrasya/django-workflow_config/issues/162)
 
   Background: some requirement of this test
     # Groups

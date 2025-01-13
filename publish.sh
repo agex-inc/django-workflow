@@ -19,7 +19,7 @@ fi
 
 [ -e dist ] && rm -rf dist
 [ -e build ] && rm -rf build
-[ -e django_river.egg-info ] && rm -rf django_river.egg-info
+[ -e django_workflow_config.egg-info ] && rm -rf django_workflow_config.egg-info
 
 python setup.py sdist bdist_wheel
 twine check dist/*

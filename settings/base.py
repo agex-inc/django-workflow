@@ -18,7 +18,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'behave_django',
     'codemirror2',
-    'river',
+    'workflow_config',
 )
 
 MIDDLEWARE = [
@@ -66,7 +66,7 @@ SITE_ID = 1
 SECRET_KEY = 'abcde12345'
 
 ROOT_URLCONF = 'test_urls'
-RIVER_INJECT_MODEL_ADMIN = True
+WorkflowConfig_INJECT_MODEL_ADMIN = True
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -85,7 +85,7 @@ LOGGING = {
 
     },
     'loggers': {
-        'river': {
+        'workflow_config': {
             'handlers': ['console'],
             'level': 'DEBUG'
         }

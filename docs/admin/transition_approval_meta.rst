@@ -7,7 +7,7 @@ Transition Approval Meta Administration
 +===========================+============+==========+====================+===========================================+
 | workflow                  |            |          | | Choice           | | Your model class along with the field   |
 |                           |            |          | | of               | | that you want to use this transition    |
-|                           |            | False    | | Strings          | | approval meta for. ``django-river``     |
+|                           |            | False    | | Strings          | | approval meta for. ``django-workflow_config``     |
 |                           |            |          |                    | | will list all the possible model and    |
 |                           |            |          |                    | | fields you can pick on the admin page   |
 +---------------------------+------------+----------+--------------------+-------------------------------------------+
@@ -34,7 +34,7 @@ Transition Approval Meta Administration
 +---------------------------+------------+----------+--------------------+-------------------------------------------+
 | action_text (Depcrecated) |            | True     | String             | | An action text for this transition      |
 |                           |            |          |                    | | like, ``Open``, ``Close``. If this      |
-|                           |            |          |                    | | is not specified, than ``django-river`` |
+|                           |            |          |                    | | is not specified, than ``django-workflow_config`` |
 |                           |            |          |                    | | will pick something like                |
 |                           |            |          |                    | | ``source_state->destination_state``     |
 +---------------------------+------------+----------+--------------------+-------------------------------------------+

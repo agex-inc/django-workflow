@@ -8,19 +8,19 @@ DB_PORT = os.environ['MYSQL_3306_TCP_PORT']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'river',
+        'NAME': 'workflow_config',
         'USER': 'root',
-        'PASSWORD': 'river',
+        'PASSWORD': 'workflow_config',
         'HOST': DB_HOST,
         'PORT': DB_PORT,
         'TEST': {
-            'NAME': 'river' + str(uuid4()),
+            'NAME': 'workflow_config' + str(uuid4()),
         },
     }
 }
 
 INSTALLED_APPS += (
-    'river.tests',
+    'workflow_config.tests',
 )
 
 # if django.get_version() >= '1.9.0':

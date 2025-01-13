@@ -12,12 +12,12 @@ except IOError as err:
     sys.exit(1)
 
 setup(
-    name='django-river',
+    name='django-workflow_config',
     version='3.3.0',
     author='Ahmet DAL',
     author_email='ceahmetdal@gmail.com',
     packages=find_packages(),
-    url='https://github.com/javrasya/django-river.git',
+    url='https://github.com/javrasya/django-workflow_config.git',
     description='Django Workflow Library',
     long_description=long_description,
     install_requires=[
