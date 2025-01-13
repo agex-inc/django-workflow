@@ -9,8 +9,8 @@ LOGGER = logging.getLogger(__name__)
 
 
 class RiverApp(AppConfig):
-    name = 'river'
-    label = 'river'
+    name = 'Workflow Configuration'
+    label = 'Workflow Configuration'
 
     def ready(self):
         for field_name in self._get_all_workflow_fields():
