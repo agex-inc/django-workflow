@@ -8,14 +8,14 @@ Change Logs
     * **Drop**         -  # 182_: No longer maintain Python versions <= 3.5
     * **Drop**         -  # 181_: No longer maintain Django versions <= 2.1
 
-.. _181: https://github.com/javrasya/django-newname/issues/181
-.. _182: https://github.com/javrasya/django-newname/issues/182
+.. _181: https://github.com/javrasya/django-workflow/issues/181
+.. _182: https://github.com/javrasya/django-workflow/issues/182
 
 3.2.2:
 ------
     * **Bug**         -  # 162_: Fix a bug that is causing some possible future transitions to turn to CANCELLED for some workflowmodels.
 
-.. _162: https://github.com/javrasya/django-newname/issues/159
+.. _162: https://github.com/javrasya/django-workflow/issues/159
 
 3.2.1:
 ------
@@ -23,29 +23,29 @@ Change Logs
     * **Drop**        -        : Drop Python3.4 support since it is having incompatibilities with the module ``six``
 
 
-.. _159: https://github.com/javrasya/django-newname/issues/159
+.. _159: https://github.com/javrasya/django-workflow/issues/159
 
 3.2.0:
 ------
     * **Improvement** -  # 140_ 141_: Support Microsoft SQL Server 17 and 19
 
 
-.. _140: https://github.com/javrasya/django-newname/issues/140
-.. _141: https://github.com/javrasya/django-newname/issues/141
+.. _140: https://github.com/javrasya/django-workflow/issues/140
+.. _141: https://github.com/javrasya/django-workflow/issues/141
 
 3.1.4:
 ------
     * **Bug**         -  # 137_: Fix a bug with jumping to a state
 
 
-.. _137: https://github.com/javrasya/django-newname/issues/137
+.. _137: https://github.com/javrasya/django-workflow/issues/137
 
 3.1.3:
 ------
     * **Improvement** -  # 135_: Support Django 3.0
 
 
-.. _135: https://github.com/javrasya/django-newname/issues/135
+.. _135: https://github.com/javrasya/django-workflow/issues/135
 
 
 3.1.2:
@@ -53,7 +53,7 @@ Change Logs
     * **Improvement** -  # 133_: Support MySQL 8.0
 
 
-.. _133: https://github.com/javrasya/django-newname/issues/133
+.. _133: https://github.com/javrasya/django-workflow/issues/133
 
 3.1.1
 -----
@@ -61,8 +61,8 @@ Change Logs
     * **Bug**         -  # 129_: Models with string typed primary keys violates integer field in the hooks
 
 
-.. _128: https://github.com/javrasya/django-newname/issues/128
-.. _129: https://github.com/javrasya/django-newname/issues/129
+.. _128: https://github.com/javrasya/django-workflow/issues/128
+.. _129: https://github.com/javrasya/django-workflow/issues/129
 
 3.1.0
 -----
@@ -70,8 +70,8 @@ Change Logs
     * **Bug**         -  # 124_: Include some BDD tests for the users to understand the usages easier.
 
 
-.. _123: https://github.com/javrasya/django-newname/issues/123
-.. _124: https://github.com/javrasya/django-newname/issues/124
+.. _123: https://github.com/javrasya/django-workflow/issues/123
+.. _124: https://github.com/javrasya/django-workflow/issues/124
 
 3.0.0
 -----
@@ -89,18 +89,18 @@ Change Logs
     * **Improvement** -  # 116_: Allow creating transitions without any approvals. A new TransitionMeta and Transition models are introduced to keep transition information even though there is no transition approval yet.
 
 
-.. _105: https://github.com/javrasya/django-newname/issues/105
-.. _106: https://github.com/javrasya/django-newname/issues/106
-.. _107: https://github.com/javrasya/django-newname/issues/107
-.. _108: https://github.com/javrasya/django-newname/issues/108
-.. _109: https://github.com/javrasya/django-newname/issues/109
-.. _110: https://github.com/javrasya/django-newname/issues/110
-.. _111: https://github.com/javrasya/django-newname/issues/110
-.. _112: https://github.com/javrasya/django-newname/issues/112
-.. _113: https://github.com/javrasya/django-newname/issues/113
-.. _114: https://github.com/javrasya/django-newname/issues/114
-.. _115: https://github.com/javrasya/django-newname/issues/115
-.. _116: https://github.com/javrasya/django-newname/issues/116
+.. _105: https://github.com/javrasya/django-workflow/issues/105
+.. _106: https://github.com/javrasya/django-workflow/issues/106
+.. _107: https://github.com/javrasya/django-workflow/issues/107
+.. _108: https://github.com/javrasya/django-workflow/issues/108
+.. _109: https://github.com/javrasya/django-workflow/issues/109
+.. _110: https://github.com/javrasya/django-workflow/issues/110
+.. _111: https://github.com/javrasya/django-workflow/issues/110
+.. _112: https://github.com/javrasya/django-workflow/issues/112
+.. _113: https://github.com/javrasya/django-workflow/issues/113
+.. _114: https://github.com/javrasya/django-workflow/issues/114
+.. _115: https://github.com/javrasya/django-workflow/issues/115
+.. _116: https://github.com/javrasya/django-workflow/issues/116
 
 2.0.0
 -----
@@ -109,23 +109,23 @@ Change Logs
     * **Improvement** -  # 93_ : Tests are revisited, separated, simplified and easy to maintain right now
     * **Improvement** -  # 94_ : Support class level hooking. Meaning that, a hook can be registered for all the objects through the class api
     * **Bug** -  # 91_ : Callbacks get removed when the related workflowmodel object is deleted
-    * **Improvement** -  Whole ``django-newname`` source code is revisited and simplified
+    * **Improvement** -  Whole ``django-workflow`` source code is revisited and simplified
     * **Improvement** -  Support ``Django v2.2``
     * **Deprecation** -  ``Django v1.7``, ``v1.8``, ``v1.9`` and ``v1.10`` supports have been dropped
 
-.. _36: https://github.com/javrasya/django-newname/issues/36
-.. _90: https://github.com/javrasya/django-newname/issues/90
-.. _91: https://github.com/javrasya/django-newname/issues/91
-.. _92: https://github.com/javrasya/django-newname/issues/92
-.. _93: https://github.com/javrasya/django-newname/issues/93
-.. _94: https://github.com/javrasya/django-newname/issues/94
+.. _36: https://github.com/javrasya/django-workflow/issues/36
+.. _90: https://github.com/javrasya/django-workflow/issues/90
+.. _91: https://github.com/javrasya/django-workflow/issues/91
+.. _92: https://github.com/javrasya/django-workflow/issues/92
+.. _93: https://github.com/javrasya/django-workflow/issues/93
+.. _94: https://github.com/javrasya/django-workflow/issues/94
 
 1.0.2
 -----
     * **Bug** - # 77_ : Migrations for the models that have state field is no longer kept getting recreated.
     * **Bug** - It is crashing when there is no workflowmodel in the workspace.
 
-.. _77: https://github.com/javrasya/django-newname/issues/77
+.. _77: https://github.com/javrasya/django-workflow/issues/77
 
 
 1.0.1
@@ -133,11 +133,11 @@ Change Logs
     * **Bug** - # 74_ : Fields that have no transition approval meta are now logged correctly.
     * **Bug** - ``django`` version is now fixed to 2.1 for coverage in the build to make the build pass
 
-.. _74: https://github.com/javrasya/django-newname/issues/74
+.. _74: https://github.com/javrasya/django-workflow/issues/74
 
 1.0.0
 -----
-``django-newname`` is finally having it's first major version bump. In this version, all code and the APIs are revisited
+``django-workflow`` is finally having it's first major version bump. In this version, all code and the APIs are revisited
 and are much easier to understand how it works and much easier to use it now. In some places even more performant. 
 There are also more documentation with this version. Stay tuned :-)
 
@@ -161,7 +161,7 @@ There are also more documentation with this version. Stay tuned :-)
     * **Remove** -  ``Python3.3`` support has been dropped
     * **Improvement** - ``Django2.0`` support with ``Python3.5`` and ``Python3.6`` is provided
 
-.. _39: https://github.com/javrasya/django-newname/issues/39
+.. _39: https://github.com/javrasya/django-workflow/issues/39
 
 0.9.0
 -----
@@ -169,19 +169,19 @@ There are also more documentation with this version. Stay tuned :-)
     * # 30_ - **Bug** -  Missing migration file which is ``0007`` because of ``Python2.7`` can not detect it.
     * # 31_ - **Improvement** - unicode issue for Python3.
     * # 33_ - **Bug** - Automatically injecting workflowmodel manager was causing the models not have default ``objects`` one. So, automatic injection support has been dropped. If anyone want to use it, it can be used explicitly.
-    * # 35_ - **Bug** - This is huge change in django-newname. Multiple state field each model support is dropped completely and so many APIs have been changed. Check documentations and apply changes.
+    * # 35_ - **Bug** - This is huge change in django-workflow. Multiple state field each model support is dropped completely and so many APIs have been changed. Check documentations and apply changes.
 
-.. _30: https://github.com/javrasya/django-newname/pull/30  
-.. _31: https://github.com/javrasya/django-newname/pull/30
-.. _33: https://github.com/javrasya/django-newname/pull/33
-.. _35: https://github.com/javrasya/django-newname/pull/35
+.. _30: https://github.com/javrasya/django-workflow/pull/30  
+.. _31: https://github.com/javrasya/django-workflow/pull/30
+.. _33: https://github.com/javrasya/django-workflow/pull/33
+.. _35: https://github.com/javrasya/django-workflow/pull/35
 
 0.8.2
 -----
 
     * **Bug** - Features providing multiple state field in a model was causing a problem. When there are multiple state field, injected attributes in model class are owerriten. This feature is also unpractical. So, it is dropped to fix the bug.
     * **Improvement** - Initial video tutorial which is Simple jira example is added into the documentations. Also repository link of fakejira project which is created in the video tutorial is added into the docs.
-    * **Improvement** - No proceeding meta parent input is required by user. It is set automatically by django-newname now. The field is removed from ProceedingMeta admin interface too.
+    * **Improvement** - No proceeding meta parent input is required by user. It is set automatically by django-workflow now. The field is removed from ProceedingMeta admin interface too.
 
 
 0.8.1
@@ -192,7 +192,7 @@ There are also more documentation with this version. Stay tuned :-)
 0.8.0
 -----
 
-    * **Deprecation** - ProceedingTrack is removed. ProceedingTracks were being used to keep any transaction track to handle even circular one. This was a workaround. So, it can be handled with Proceeding now by cloning them if there is circle. ProceedingTracks was just causing confusion. To fix this, ProceedingTrack model and its functions are removed from django-newname.
+    * **Deprecation** - ProceedingTrack is removed. ProceedingTracks were being used to keep any transaction track to handle even circular one. This was a workaround. So, it can be handled with Proceeding now by cloning them if there is circle. ProceedingTracks was just causing confusion. To fix this, ProceedingTrack model and its functions are removed from django-workflow.
     * **Improvement** - Circular scenario test is added.
     * **Improvement** - Admins of the workflowmodel components such as State, Transition and ProceedingMeta are registered automatically now. Issue #14 is fixed.
 

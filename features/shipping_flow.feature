@@ -1,4 +1,4 @@
-Feature: An example shipping flow that is set up with django-newname
+Feature: An example shipping flow that is set up with django-workflow
 
   . POTENTIAL PROBLEM AREAS:
   .   * The workflowmodel creation with all the components like states, transitions, authorization rules may have unexpected problems

@@ -1,9 +1,9 @@
 from django.contrib.contenttypes.models import ContentType
 
-# from newname.driver.newname.mssql_newname import MsSqlnewname
-from newname.driver.mssql_driver import MsSqlnewname
-from newname.driver.orm_driver import Ormnewname
-from newname.models import State, TransitionApprovalMeta, WorkflowModel, app_config, TransitionMeta
+# from workflow.driver.workflow.mssql_workflow import MsSqlworkflow
+from workflow.driver.mssql_driver import MsSqlworkflow
+from workflow.driver.orm_driver import Ormworkflow
+from workflow.models import State, TransitionApprovalMeta, WorkflowModel, app_config, TransitionMeta
 
 
 class ClassWorkflowModelObject(object):
@@ -12,18 +12,18 @@ class ClassWorkflowModelObject(object):
         self.wokflow_object_class = wokflow_object_class
         self.field_name = field_name
         self.workflowmodel = WorkflowModel.objects.filter(field_name=self.field_name, content_type=self._content_type).first()
-        self._cached_newname_newname = None
+        self._cached_workflow_workflow = None
 
     @property
-    def _newname_newname(self):
-        if self._cached_newname_newname:
-            return self._cached_newname_newname
+    def _workflow_workflow(self):
+        if self._cached_workflow_workflow:
+            return self._cached_workflow_workflow
         else:
             if app_config.IS_MSSQL:
-                self._cached_newname_newname = MsSqlnewname(self.workflowmodel, self.wokflow_object_class, self.field_name)
+                self._cached_workflow_workflow = MsSqlworkflow(self.workflowmodel, self.wokflow_object_class, self.field_name)
             else:
-                self._cached_newname_newname = Ormnewname(self.workflowmodel, self.wokflow_object_class, self.field_name)
-            return self._cached_newname_newname
+                self._cached_workflow_workflow = Ormworkflow(self.workflowmodel, self.wokflow_object_class, self.field_name)
+            return self._cached_workflow_workflow
 
     def get_on_approval_objects(self, as_user):
         approvals = self.get_available_approvals(as_user)
@@ -31,7 +31,7 @@ class ClassWorkflowModelObject(object):
         return self.wokflow_object_class.objects.filter(pk__in=object_ids)
 
     def get_available_approvals(self, as_user):
-        return self._newname_newname.get_available_approvals(as_user)
+        return self._workflow_workflow.get_available_approvals(as_user)
 
     @property
     def initial_state(self):

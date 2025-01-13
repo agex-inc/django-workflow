@@ -12,12 +12,12 @@ except IOError as err:
     sys.exit(1)
 
 setup(
-    name='django-newname',
+    name='django-workflow',
     version='3.3.0',
     author='Ahmet DAL',
     author_email='ceahmetdal@gmail.com',
     packages=find_packages(),
-    url='https://github.com/javrasya/django-newname.git',
+    url='https://github.com/javrasya/django-workflow.git',
     description='Django WorkflowModel Library',
     long_description=long_description,
     install_requires=[

@@ -1,4 +1,4 @@
-Feature: An example #159 Flow that is set up with django-newname
+Feature: An example #159 Flow that is set up with django-workflow
 
   . POTENTIAL PROBLEM AREAS:
   .   * Short cyclic transitions are reported to have go in an infinite loop.

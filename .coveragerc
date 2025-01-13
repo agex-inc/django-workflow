@@ -1,8 +1,8 @@
 [run]
 omit =
-    newname/admin/*
-    newname/tests/*
-    newname/migrations/*
+    workflow/admin/*
+    workflow/tests/*
+    workflow/migrations/*
     settings/*
     */__init__*
     .tox/*

@@ -1,7 +1,7 @@
 ---
 exclude_paths:
-  - 'newname/migrations/*'
+  - 'workflow/migrations/*'
   - '**/tests/**'
   - 'settings/**'
-  - 'newname/sql/**/**'
+  - 'workflow/sql/**/**'
   - 'docs/conf.py'

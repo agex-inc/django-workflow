@@ -7,20 +7,20 @@ DB_PORT = os.environ['POSTGRES_5432_TCP_PORT']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'newname',
-        'USER': 'newname',
-        'PASSWORD': 'newname',
+        'NAME': 'workflow',
+        'USER': 'workflow',
+        'PASSWORD': 'workflow',
         'HOST': DB_HOST,
         'PORT': DB_PORT,
         'TEST': {
-            'NAME': 'newname' + str(uuid4()),
+            'NAME': 'workflow' + str(uuid4()),
 
         },
     }
 }
 
 INSTALLED_APPS += (
-    'newname.tests',
+    'workflow.tests',
 )
 
 # if django.get_version() >= '1.9.0':

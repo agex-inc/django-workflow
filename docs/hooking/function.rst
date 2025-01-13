@@ -6,7 +6,7 @@ Functions
 =========
 
 Functions are the description in ``Python`` of what you want to do on certain events happen. So you define them once and you can use them
-with multiple hooking up. Just go to ``/admin/newname/function/`` admin page and create your functions there.``django-newname`` function admin support
+with multiple hooking up. Just go to ``/admin/workflow/function/`` admin page and create your functions there.``django-workflow`` function admin support
 python code highlighting as well if you enable the ``codemirror2`` app. Don't forget to collect statics for production deployments.
 
 
@@ -15,7 +15,7 @@ python code highlighting as well if you enable the ``codemirror2`` app. Don't fo
        INSTALLED_APPS=[
            ...
            codemirror2
-           newname
+           workflow
            ...
        ]
 
@@ -28,14 +28,14 @@ Here is an example function;
         def handle(context):
             print(datetime.now())
 
-**Important:** **YOUR FUNCTION SHOULD BE NAMED AS** ``handle``. Otherwise ``django-newname`` won't execute your function.
+**Important:** **YOUR FUNCTION SHOULD BE NAMED AS** ``handle``. Otherwise ``django-workflow`` won't execute your function.
 
 |Create Function Page|
 
 Context Parameter
 -----------------
 
-``django-newname`` will pass a ``context`` down to your function in order for you to know why the function is triggered or for which object or so. And the ``context``
+``django-workflow`` will pass a ``context`` down to your function in order for you to know why the function is triggered or for which object or so. And the ``context``
 will look different for different type of events. But it also has some common parts for all the events. Let's look at how it looks;
 
 
@@ -109,7 +109,7 @@ Example Function
 
    .. code:: python
 
-        from newname.models.hook import BEFORE, AFTER
+        from workflow.models.hook import BEFORE, AFTER
 
         def _handle_my_transitions(hook):
             workflowmodel = hook['payload']['workflowmodel']

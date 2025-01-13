@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# django-newname documentation build configuration file, created by
+# django-workflow documentation build configuration file, created by
 # sphinx-quickstart on Sun Aug 30 00:15:25 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django-newname'
+project = u'django-workflow'
 copyright = u'2015, Ahmet DAL'
 author = u'Ahmet DAL'
 
@@ -202,7 +202,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'django-newnamedoc'
+htmlhelp_basename = 'django-workflowdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -224,7 +224,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'django-newname.tex', u'django-newname Documentation',
+  (master_doc, 'django-workflow.tex', u'django-workflow Documentation',
    u'Ahmet DAL', 'manual'),
 ]
 
@@ -254,7 +254,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'django-newname', u'django-newname Documentation',
+    (master_doc, 'django-workflow', u'django-workflow Documentation',
      [author], 1)
 ]
 
@@ -268,8 +268,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'django-newname', u'django-newname Documentation',
-   author, 'django-newname', 'One line description of project.',
+  (master_doc, 'django-workflow', u'django-workflow Documentation',
+   author, 'django-workflow', 'One line description of project.',
    'Miscellaneous'),
 ]
 

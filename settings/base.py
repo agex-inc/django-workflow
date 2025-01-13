@@ -18,7 +18,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'behave_django',
     'codemirror2',
-    'newname',
+    'workflow',
 )
 
 MIDDLEWARE = [
@@ -66,7 +66,7 @@ SITE_ID = 1
 SECRET_KEY = 'abcde12345'
 
 ROOT_URLCONF = 'test_urls'
-NewName_INJECT_MODEL_ADMIN = True
+Workflow_INJECT_MODEL_ADMIN = True
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -85,7 +85,7 @@ LOGGING = {
 
     },
     'loggers': {
-        'newname': {
+        'workflow': {
             'handlers': ['console'],
             'level': 'DEBUG'
         }

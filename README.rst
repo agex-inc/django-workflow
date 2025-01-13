@@ -1,28 +1,28 @@
-.. |Build Status| image:: https://travis-ci.org/javrasya/django-newname.svg
-    :target: https://travis-ci.org/javrasya/django-newname
+.. |Build Status| image:: https://travis-ci.org/javrasya/django-workflow.svg
+    :target: https://travis-ci.org/javrasya/django-workflow
 
-.. |Coverage Status| image:: https://coveralls.io/repos/javrasya/django-newname/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/javrasya/django-newname?branch=master
+.. |Coverage Status| image:: https://coveralls.io/repos/javrasya/django-workflow/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/javrasya/django-workflow?branch=master
 
-.. |Health Status| image:: https://landscape.io/github/javrasya/django-newname/master/landscape.svg?style=flat
-    :target: https://landscape.io/github/javrasya/django-newname/master
+.. |Health Status| image:: https://landscape.io/github/javrasya/django-workflow/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/javrasya/django-workflow/master
    :alt: Code Health
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/django-newname/badge/?version=latest
-    :target: https://readthedocs.org/projects/django-newname/?badge=latest
+.. |Documentation Status| image:: https://readthedocs.org/projects/django-workflow/badge/?version=latest
+    :target: https://readthedocs.org/projects/django-workflow/?badge=latest
 
 .. |Quality Status| image:: https://api.codacy.com/project/badge/Grade/c3c73d157fe045e6b966d8d4416b6b17
    :alt: Codacy Badge
-   :target: https://app.codacy.com/app/javrasya/django-newname?utm_source=github.com&utm_medium=referral&utm_content=javrasya/django-newname&utm_campaign=Badge_Grade_Dashboard
+   :target: https://app.codacy.com/app/javrasya/django-workflow?utm_source=github.com&utm_medium=referral&utm_content=javrasya/django-workflow&utm_campaign=Badge_Grade_Dashboard
 
-.. |Downloads| image:: https://img.shields.io/pypi/dm/django-newname
+.. |Downloads| image:: https://img.shields.io/pypi/dm/django-workflow
     :alt: PyPI - Downloads
 
 .. |Discord| image:: https://img.shields.io/discord/651433240019599400
     :target: https://discord.gg/DweUwZX
     :alt: Discord
 
-.. |Open Collective| image:: https://opencollective.com/django-newname/all/badge.svg?label=financial+contributors
+.. |Open Collective| image:: https://opencollective.com/django-workflow/all/badge.svg?label=financial+contributors
     :alt: Financial Contributors
     :target: #contributors
 
@@ -33,14 +33,14 @@
 
 .. |Create Function Page| image:: docs/_static/create-function.png
 
-Django NewName
+Django Workflow
 ============
 
 |Logo|
 
 |Build Status| |Coverage Status| |Documentation Status| |Quality Status| |Downloads| |Discord|
 
-NewName is an open source workflowmodel framework for ``Django`` which supports on
+Workflow is an open source workflowmodel framework for ``Django`` which supports on
 the fly changes instead of hard-coding states, transitions and authorization rules.
 
 The main goal of developing this framework is **to be able to modify literally everything
@@ -48,14 +48,14 @@ about the workflowmodels on the fly.** This means that all the elements in a wor
 states, transitions or authorizations rules are editable at any time so that no changes
 requires a re-deploying of your application anymore.
 
-**Playground**: There is a fake jira example repository as a playground of django-newname. https://github.com/javrasya/fakejira
+**Playground**: There is a fake jira example repository as a playground of django-workflow. https://github.com/javrasya/fakejira
 
 Donations
 ---------
 
 This is a fully open source project and it can be better with your donations.
 
-If you are using ``django-newname`` to create a commercial product,
+If you are using ``django-workflow`` to create a commercial product,
 please consider becoming our `sponsor`_  , `patron`_ or donate over `PayPal`_
 
 .. _`patron`: https://www.patreon.com/javrasya
@@ -65,14 +65,14 @@ please consider becoming our `sponsor`_  , `patron`_ or donate over `PayPal`_
 Documentation
 -------------
 
-Online documentation is available at http://django-newname.rtfd.org/
+Online documentation is available at http://django-workflow.rtfd.org/
 
 Advance Admin
 -------------
 
-A very modern admin with some user friendly interfaces that is called `NewName Admin`_ has been published.
+A very modern admin with some user friendly interfaces that is called `Workflow Admin`_ has been published.
 
-.. _`NewName Admin`: https://newnameadminproject.com/
+.. _`Workflow Admin`: https://workflowadminproject.com/
 
 Requirements
 ------------
@@ -121,14 +121,14 @@ Usage
 
    .. code:: bash
 
-       pip install django-newname
+       pip install django-workflow
 
 
    .. code:: python
 
        INSTALLED_APPS=[
            ...
-           newname
+           workflow
            ...
        ]
 
@@ -137,7 +137,7 @@ Usage
     .. code:: python
 
         from django.db import models
-        from newname.models.fields.state import StateField
+        from workflow.models.fields.state import StateField
 
         class MyModel(models.Model):
             my_state_field = StateField()
@@ -146,25 +146,25 @@ Usage
 4. Create a ``workflowmodel`` with your model ( ``MyModel`` - ``my_state_field`` ) information on the admin page
 5. Create your ``transition metadata`` within the workflowmodel created earlier, source and destination states
 6. Create your ``transition approval metadata`` within the workflowmodel created earlier and authorization rules along with their priority on the admin page
-7. Enjoy your ``django-newname`` journey.
+7. Enjoy your ``django-workflow`` journey.
 
     .. code-block:: python
 
         my_model=MyModel.objects.get(....)
 
-        my_model.newname.my_state_field.approve(as_user=transactioner_user)
-        my_model.newname.my_state_field.approve(as_user=transactioner_user, next_state=State.objects.get(label='re-opened'))
+        my_model.workflow.my_state_field.approve(as_user=transactioner_user)
+        my_model.workflow.my_state_field.approve(as_user=transactioner_user, next_state=State.objects.get(label='re-opened'))
 
         # and much more. Check the documentation
 
 .. note::
     Whenever a model object is saved, it's state field will be initialized with the
-    state is given at step-4 above by ``django-newname``.
+    state is given at step-4 above by ``django-workflow``.
 
 Hooking Up With The Events
 --------------------------
 
-`django-newname` provides you to have your custom code run on certain events. And since version v2.1.0 this has also been supported for on the fly changes. You can
+`django-workflow` provides you to have your custom code run on certain events. And since version v2.1.0 this has also been supported for on the fly changes. You can
 create your functions and also the hooks to a certain events by just creating few database items. Let's see what event types that can be hooked a function to;
 
 * An approval is approved
@@ -177,15 +177,15 @@ or you will possible have, or for a specific workflowmodel object. You can also 
 1. Create Function
 ^^^^^^^^^^^^^^^^^^
 
-This will be the description of your functions. So you define them once and you can use them with multiple hooking up. Just go to ``/admin/newname/function/`` admin page
-and create your functions there. ``django-newname`` function admin support python code highlights.
+This will be the description of your functions. So you define them once and you can use them with multiple hooking up. Just go to ``/admin/workflow/function/`` admin page
+and create your functions there. ``django-workflow`` function admin support python code highlights.
 
    .. code:: python
 
        INSTALLED_APPS=[
            ...
            codemirror2
-           newname
+           workflow
            ...
        ]
 
@@ -198,31 +198,31 @@ Here is an example function;
         def handle(context):
             print(datetime.now())
 
-**Important:** **YOUR FUNCTION SHOULD BE NAMED AS** ``handle``. Otherwise ``django-newname`` won't execute your function.
+**Important:** **YOUR FUNCTION SHOULD BE NAMED AS** ``handle``. Otherwise ``django-workflow`` won't execute your function.
 
-``django-newname`` will pass a ``context`` down to your function in order for you to know why the function is triggered or for which object or so. And the ``context`` will look different for
+``django-workflow`` will pass a ``context`` down to your function in order for you to know why the function is triggered or for which object or so. And the ``context`` will look different for
 different type of events. Please see detailed `context documentation`_ to know more on what you would get from context in your functions.
 
 You can find an `advance function example`_ on the link.
 
 |Create Function Page|
 
-.. _`context documentation`: https://django-newname.readthedocs.io/en/latest/hooking/function.html#context-parameter
-.. _`advance function example`: https://django-newname.readthedocs.io/en/latest/hooking/function.html#example-function
+.. _`context documentation`: https://django-workflow.readthedocs.io/en/latest/hooking/function.html#context-parameter
+.. _`advance function example`: https://django-workflow.readthedocs.io/en/latest/hooking/function.html#example-function
 
 2. Hook It Up
 ^^^^^^^^^^^^^
 
-The hookings in ``django-newname`` can be created both specifically for a workflowmodel object or for a whole workflowmodel. ``django-newname`` comes with some model objects and admin interfaces which you can use
+The hookings in ``django-workflow`` can be created both specifically for a workflowmodel object or for a whole workflowmodel. ``django-workflow`` comes with some model objects and admin interfaces which you can use
 to create the hooks.
 
 * To create one for whole workflowmodel regardless of what the workflowmodel object is, go to
 
-    * ``/admin/newname/onapprovedhook/`` to hook up to an approval
-    * ``/admin/newname/ontransithook/`` to hook up to a transition
-    * ``/admin/newname/oncompletehook/`` to hook up to the completion of the workflowmodel
+    * ``/admin/workflow/onapprovedhook/`` to hook up to an approval
+    * ``/admin/workflow/ontransithook/`` to hook up to a transition
+    * ``/admin/workflow/oncompletehook/`` to hook up to the completion of the workflowmodel
 
-* To create one for a specific workflowmodel object you should use the admin interface for the workflowmodel object itself. One amazing feature of ``django-newname`` is now that it creates a default admin interface with the hookings for your workflowmodel model class. If you have already defined one, ``django-newname`` enriches your already defined admin with the hooking section. It is default disabled. To enable it just define ``NewName_INJECT_MODEL_ADMIN`` to be ``True`` in the ``settings.py``.
+* To create one for a specific workflowmodel object you should use the admin interface for the workflowmodel object itself. One amazing feature of ``django-workflow`` is now that it creates a default admin interface with the hookings for your workflowmodel model class. If you have already defined one, ``django-workflow`` enriches your already defined admin with the hooking section. It is default disabled. To enable it just define ``Workflow_INJECT_MODEL_ADMIN`` to be ``True`` in the ``settings.py``.
 
 
 **Note:** They can programmatically be created as well since they are model objects. If it is needed to be at workflowmodel level, just don't provide the workflowmodel object column. If it is needed
@@ -237,7 +237,7 @@ Here are the list of hook models;
 Before Reporting A Bug
 ----------------------
 
-``django-newname`` has behavioral tests that are very easy to read and write. One can easily set up one
+``django-workflow`` has behavioral tests that are very easy to read and write. One can easily set up one
 and see if everything is running as expected. Please look at other examples (that are the files with ``.feature`` postfix)
 under ``features`` folder that you can get all the inspiration and create one for yourself before you open an issue
 Then refer to your behavioral test to point out what is not function as expected to speed the process up for your own
@@ -249,32 +249,32 @@ Migrations
 2.X.X to 3.0.0
 ^^^^^^^^^^^^^^
 
-``django-newname`` v3.0.0 comes with quite number of migrations, but the good news is that even though those are hard to determine kind of migrations, it comes with the required migrations
+``django-workflow`` v3.0.0 comes with quite number of migrations, but the good news is that even though those are hard to determine kind of migrations, it comes with the required migrations
 out of the box. All you need to do is to run;
 
 
    .. code:: bash
 
-       python manage.py migrate newname
+       python manage.py migrate workflow
 
 3.1.X to 3.2.X
 ^^^^^^^^^^^^^^
 
-``django-newname`` started to support **Microsoft SQL Server 17 and 19** after version 3.2.0 but the previous migrations didn't get along with it. We needed to reset all
+``django-workflow`` started to support **Microsoft SQL Server 17 and 19** after version 3.2.0 but the previous migrations didn't get along with it. We needed to reset all
 the migrations to have fresh start. If you have already migrated to version `3.1.X` all you need to do is to pull your migrations back to the beginning.
 
 
    .. code:: bash
 
-       python manage.py migrate --fake newname zero
-       python manage.py migrate --fake newname
+       python manage.py migrate --fake workflow zero
+       python manage.py migrate --fake workflow
 
 FAQ
 ---
 
 Have a look at `FAQ`_
 
-.. _`FAQ`: https://django-newname.readthedocs.io/en/latest/faq.html
+.. _`FAQ`: https://django-workflow.readthedocs.io/en/latest/faq.html
 
 Contributors
 ============
@@ -284,8 +284,8 @@ Code Contributors
 
 This project exists thanks to all the people who contribute :rocket: :heart:
 
-.. image:: https://opencollective.com/django-newname/contributors.svg?width=890&button=false
-    :target: https://github.com/javrasya/django-newname/graphs/contributors
+.. image:: https://opencollective.com/django-workflow/contributors.svg?width=890&button=false
+    :target: https://github.com/javrasya/django-workflow/graphs/contributors
 
 Financial Contributors
 ----------------------
@@ -295,18 +295,18 @@ Become a financial contributor and help us sustain our community. Contribute_
 Individuals
 ^^^^^^^^^^^
 
-.. image:: https://opencollective.com/django-newname/individuals.svg?width=890
-    :target: https://opencollective.com/django-newname
+.. image:: https://opencollective.com/django-workflow/individuals.svg?width=890
+    :target: https://opencollective.com/django-workflow
 
 Organizations
 ^^^^^^^^^^^^^
 
 Support this project with your organization. Your logo will show up here with a link to your website. Contribute_
 
-.. image:: https://opencollective.com/django-newname/organization/0/avatar.svg
-    :target: https://opencollective.com/django-newname/organization/0/website
+.. image:: https://opencollective.com/django-workflow/organization/0/avatar.svg
+    :target: https://opencollective.com/django-workflow/organization/0/website
 
-.. _Contribute: https://opencollective.com/django-newname
+.. _Contribute: https://opencollective.com/django-workflow
 
 .. _license:
 

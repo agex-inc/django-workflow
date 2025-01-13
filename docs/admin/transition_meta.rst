@@ -7,7 +7,7 @@ Transition Meta Administration
 +===========================+============+==========+====================+===========================================+
 | workflowmodel                  |            | False    | | Choice           | | Your model class along with the field   |
 |                           |            |          | | of               | | that you want to use this transition    |
-|                           |            | False    | | Strings          | | approval meta for. ``django-newname``     |
+|                           |            | False    | | Strings          | | approval meta for. ``django-workflow``     |
 |                           |            |          |                    | | will list all the possible model and    |
 |                           |            |          |                    | | fields you can pick on the admin page   |
 +---------------------------+------------+----------+--------------------+-------------------------------------------+

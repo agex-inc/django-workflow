@@ -1,4 +1,4 @@
-Feature: An example #162 Flow that is set up with django-newname (https://github.com/javrasya/django-newname/issues/162)
+Feature: An example #162 Flow that is set up with django-workflow (https://github.com/javrasya/django-workflow/issues/162)
 
   Background: some requirement of this test
     # Groups

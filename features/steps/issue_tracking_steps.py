@@ -10,12 +10,12 @@ def issue(context, description, identifier):
 
 def _approve(context, workflowmodel_object_identifier, username, next_state):
     from django.contrib.auth.models import User
-    from newname.models import State
+    from workflow.models import State
 
     workflowmodel_object = getattr(context, "workflowmodel_objects", {})[workflowmodel_object_identifier]
 
     user = User.objects.get(username=username)
-    workflowmodel_object.newname.my_field.approve(as_user=user, next_state=State.objects.get(label=next_state))
+    workflowmodel_object.workflow.my_field.approve(as_user=user, next_state=State.objects.get(label=next_state))
 
 
 @when('"{workflowmodel_object_identifier:ws}" is attempted to be closed by {username:w}')
