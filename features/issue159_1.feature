@@ -1,4 +1,4 @@
-Feature: An example #159 Flow that is set up with django-workflow_config
+Feature: An example #159 Flow that is set up with django-newname
 
   . POTENTIAL PROBLEM AREAS:
   .   * Short cyclic transitions are reported to have go in an infinite loop.
@@ -10,8 +10,8 @@ Feature: An example #159 Flow that is set up with django-workflow_config
     # Users
     Given a user with name authorized_user with group "Authorized Group"
 
-    # Workflow
-    Given a workflow with an identifier "#159 Flow"
+    # WorkflowModel
+    Given a workflowmodel with an identifier "#159 Flow"
 
     # Transitions
     Given a transition "Draft" -> "Awaiting 1" in "#159 Flow"
@@ -36,7 +36,7 @@ Feature: An example #159 Flow that is set up with django-workflow_config
     Given an authorization rule for the transition "Second Approval" -> "Published" with group "Authorized Group" and priority 0
 
   Scenario: Should allow multiple cyclic transitions when one of them goes through
-    Given a workflow object with identifier "object 1"
+    Given a workflowmodel object with identifier "object 1"
     And "object 1" is jumped on state "First Approval"
     When "object 1" is attempted to be approved for next state "Recreate 1" by authorized_user
     And "object 1" is attempted to be approved for next state "First Approval" by authorized_user

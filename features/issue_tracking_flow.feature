@@ -1,7 +1,7 @@
-Feature: An example issue tracking flow that is set up with django-workflow_config
+Feature: An example issue tracking flow that is set up with django-newname
 
   . POTENTIAL PROBLEM AREAS:
-  .   * The workflow creation with all the components like states, transitions, authorization rules may have unexpected problems
+  .   * The workflowmodel creation with all the components like states, transitions, authorization rules may have unexpected problems
   .   * Authorized person may not be able to approve the transition
   .   * What is going on with one issue may be affecting another issue.
   .   * Recursive transitions may be working as expected
@@ -17,8 +17,8 @@ Feature: An example issue tracking flow that is set up with django-workflow_conf
     And a user with name team_leader_1 with group "Team Leader"
     And a user with name tester_1 with group "Tester"
 
-    # Workflow
-    Given a workflow with an identifier "Issue Tracking Flow"
+    # WorkflowModel
+    Given a workflowmodel with an identifier "Issue Tracking Flow"
 
     # Transitions
     Given a transition "Open" -> "In Progress" in "Issue Tracking Flow"

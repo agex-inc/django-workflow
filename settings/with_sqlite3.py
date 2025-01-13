@@ -8,7 +8,7 @@ DATABASES = {
 }
 
 INSTALLED_APPS += (
-    'workflow_config.tests',
+    'newname.tests',
 )
 
 # if django.get_version() >= '1.9.0':

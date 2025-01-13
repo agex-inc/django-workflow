@@ -2,9 +2,9 @@ from collections import namedtuple
 
 from django.db import transaction
 
-from workflow_config.models import State, Workflow
-from workflow_config.models.factories import TransitionMetaFactory, TransitionApprovalMetaFactory
-from workflow_config.tests.models.factories import BasicTestModelObjectFactory
+from newname.models import State, WorkflowModel
+from newname.models.factories import TransitionMetaFactory, TransitionApprovalMetaFactory
+from newname.tests.models.factories import BasicTestModelObjectFactory
 
 RawTransition = namedtuple("RawTransition", ["source_state", "destination_state", "authorization_policies"])
 RawState = namedtuple("RawState", ["label"])
@@ -12,8 +12,8 @@ AuthorizationPolicy = namedtuple("RawAuthorizationPolicy", ["priority", "permiss
 
 
 class Flow(object):
-    def __init__(self, workflow, states, transitions_metas, transitions_approval_metas, objects):
-        self.workflow = workflow
+    def __init__(self, workflowmodel, states, transitions_metas, transitions_approval_metas, objects):
+        self.workflowmodel = workflowmodel
         self.states = states
         self.transitions_metas = transitions_metas
         self.transitions_approval_metas = transitions_approval_metas
@@ -85,26 +85,26 @@ class FlowBuilder(object):
 
     @transaction.atomic
     def build(self):
-        workflow = None
+        workflowmodel = None
         states = {}
         transition_metas = []
         transitions_approval_metas = []
-        workflow_objects = []
+        workflowmodel_objects = []
         for additional_raw_state in self.additional_raw_states:
             state, _ = State.objects.get_or_create(label=additional_raw_state.label)
             states[state.label] = state
 
         for raw_transition in self.raw_transitions:
             source_state, _ = State.objects.get_or_create(label=raw_transition.source_state.label)
-            if not workflow:
-                workflow = Workflow.objects.create(field_name=self.field_name, content_type=self.content_type, initial_state=source_state)
+            if not workflowmodel:
+                workflowmodel = WorkflowModel.objects.create(field_name=self.field_name, content_type=self.content_type, initial_state=source_state)
             destination_state, _ = State.objects.get_or_create(label=raw_transition.destination_state.label)
 
             states[source_state.label] = source_state
             states[destination_state.label] = destination_state
 
             transition_meta = TransitionMetaFactory.create(
-                workflow=workflow,
+                workflowmodel=workflowmodel,
                 source_state=source_state,
                 destination_state=destination_state,
             )
@@ -113,7 +113,7 @@ class FlowBuilder(object):
             if raw_transition.authorization_policies:
                 for authorization_policy in raw_transition.authorization_policies:
                     transition_approval_meta = TransitionApprovalMetaFactory.create(
-                        workflow=workflow,
+                        workflowmodel=workflowmodel,
                         transition_meta=transition_meta,
                         priority=authorization_policy.priority,
                         permissions=authorization_policy.permissions,
@@ -122,6 +122,6 @@ class FlowBuilder(object):
                     transitions_approval_metas.append(transition_approval_meta)
 
         for i in range(self.objects_count):
-            workflow_objects.append(self.object_factory())
+            workflowmodel_objects.append(self.object_factory())
 
-        return Flow(workflow, states, transition_metas, transitions_approval_metas, workflow_objects)
+        return Flow(workflowmodel, states, transition_metas, transitions_approval_metas, workflowmodel_objects)

@@ -6,14 +6,14 @@ Class API
 This page will be covering the class level API. It is all the function that you can access through your model class 
 like in the example below;
 
->>> MyModel.workflow_config.my_state_field.<function>(*args)
+>>> MyModel.newname.my_state_field.<function>(*args)
 
 get_on_approval_objects
 -----------------------
 
 This is the function that helps you to fetch all model objects waitig for a users approval.
 
->>> my_model_objects == MyModel.workflow_config.my_state_field.get_on_approval_objects(as_user=team_leader)
+>>> my_model_objects == MyModel.newname.my_state_field.get_on_approval_objects(as_user=team_leader)
 True
 
 +---------+--------+---------+----------+---------------+----------------------------------------+
@@ -28,30 +28,30 @@ True
 
 initial_state
 -------------
-This is a property that is the initial state in the workflow
+This is a property that is the initial state in the workflowmodel
 
->>> State.objects.get(label="open") == MyModel.workflow_config.my_state_field.initial_state
+>>> State.objects.get(label="open") == MyModel.newname.my_state_field.initial_state
 True
 
 
 +--------+--------+-----------------------------------+
 |  Type  | Format |            Description            |
 +========+========+===================================+
-| Output | State  | The initial state in the workflow |
+| Output | State  | The initial state in the workflowmodel |
 +--------+--------+-----------------------------------+
 
 final_states
 -------------
-This is a property that is the list of final state in the workflow
+This is a property that is the list of final state in the workflowmodel
 
->>> State.objects.filter(Q(label="closed") | Q(label="cancelled")) == MyModel.workflow_config.my_state_field.final_states
+>>> State.objects.filter(Q(label="closed") | Q(label="cancelled")) == MyModel.newname.my_state_field.final_states
 True
 
 
 +--------+-------------+------------------------------------------+
 |  Type  |   Format    |               Description                |
 +========+=============+==========================================+
-| Output | List<State> | List of the final states in the workflow |
+| Output | List<State> | List of the final states in the workflowmodel |
 +--------+-------------+------------------------------------------+
 
 .. toctree::

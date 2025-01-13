@@ -1,4 +1,4 @@
-Feature: An example #162 Flow that is set up with django-workflow_config (https://github.com/javrasya/django-workflow_config/issues/162)
+Feature: An example #162 Flow that is set up with django-newname (https://github.com/javrasya/django-newname/issues/162)
 
   Background: some requirement of this test
     # Groups
@@ -7,8 +7,8 @@ Feature: An example #162 Flow that is set up with django-workflow_config (https:
     # Users
     Given a user with name authorized_user with group "Authorized Group"
 
-    # Workflow
-    Given a workflow with an identifier "#162 Flow"
+    # WorkflowModel
+    Given a workflowmodel with an identifier "#162 Flow"
 
     # Transitions
     Given a transition "Draft" -> "Issued" in "#162 Flow"
@@ -27,7 +27,7 @@ Feature: An example #162 Flow that is set up with django-workflow_config (https:
     Given an authorization rule for the transition "Received" -> "Closed" with group "Authorized Group" and priority 0
 
   Scenario: Should allow the state to transit all the way to Closed
-    Given a workflow object with identifier "object 1"
+    Given a workflowmodel object with identifier "object 1"
     When "object 1" is attempted to be approved for next state "Issued" by authorized_user
     And "object 1" is attempted to be approved for next state "Part Received" by authorized_user
     And "object 1" is attempted to be approved for next state "Received" by authorized_user

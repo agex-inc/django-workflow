@@ -7,11 +7,11 @@
 
 Overview
 ========
-Main goal of developing this framework is **to be able to edit any workflow item on the fly.** This means, all elements in workflow like states, transitions, user authorizations(permission), group authorization are editable. To do this, all data about the workflow item is persisted into DB. **Hence, they can be changed without touching the code and re-deploying your application.**
+Main goal of developing this framework is **to be able to edit any workflowmodel item on the fly.** This means, all elements in workflowmodel like states, transitions, user authorizations(permission), group authorization are editable. To do this, all data about the workflowmodel item is persisted into DB. **Hence, they can be changed without touching the code and re-deploying your application.**
 
-There is ordering aprovments for a transition functionality in ``django-workflow_config``. It also provides skipping specific transition of a specific objects.
+There is ordering aprovments for a transition functionality in ``django-newname``. It also provides skipping specific transition of a specific objects.
 
-**Playground**: There is a fake jira example repository as a playground of django-workflow_config. https://github.com/javrasya/fakejira
+**Playground**: There is a fake jira example repository as a playground of django-newname. https://github.com/javrasya/fakejira
 
 Requirements
 ------------
