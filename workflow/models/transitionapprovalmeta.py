@@ -31,10 +31,10 @@ class TransitionApprovalMeta(BaseModel):
     parents = models.ManyToManyField('self', verbose_name='parents', related_name='children', symmetrical=False, db_index=True, blank=True)
 
     def __str__(self):
-        return 'Transition: %s,Permissions: %s, Groups: %s, Order: %s' % (
+        return 'Transition: %s,Permissions: %s, Groups: %s' % (
             self.transition_meta,
             ','.join(self.permissions.values_list('name', flat=True)),
-            ','.join(self.groups.values_list('name', flat=True)), self.priority)
+            ','.join(self.groups.values_list('name', flat=True)))
 
 
 def post_save_model(sender, instance, *args, **kwargs):
