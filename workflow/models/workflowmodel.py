@@ -10,8 +10,8 @@ from workflow.models.managers.workflowmodelmetada import WorkflowModelManager
 class WorkflowModel(BaseModel):
     class Meta:
         app_label = 'workflow'
-        verbose_name = _("WorkflowModel")
-        verbose_name_plural = _("WorkflowModels")
+        verbose_name = _("Workflow Model")
+        verbose_name_plural = _("Workflow Models")
         unique_together = [("content_type", "field_name")]
 
     objects = WorkflowModelManager()
