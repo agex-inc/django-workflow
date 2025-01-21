@@ -105,6 +105,7 @@ class ApproveSignal(object):
     #         self.workflowmodel_object, self.transition_approval.transition.source_state.label, self.transition_approval.transition.destination_state.label))
 
     def __exit__(self, type, value, traceback):
+        print("Before executing")
         for hook in OnApprovedHook.objects.filter(
                 (Q(object_id__isnull=True) | Q(object_id=self.workflowmodel_object.pk, content_type=self.content_type)) &
                 (Q(transition_approval__isnull=True) | Q(transition_approval=self.transition_approval)) &
