@@ -18,6 +18,7 @@ class TransitionMeta(BaseModel):
     workflowmodel = models.ForeignKey(WorkflowModel, verbose_name=_("WorkflowModel"), related_name='transition_metas', on_delete=PROTECT)
     source_state = models.ForeignKey(State, verbose_name=_("Source State"), related_name='transition_meta_as_source', on_delete=PROTECT)
     destination_state = models.ForeignKey(State, verbose_name=_("Destination State"), related_name='transition_meta_as_destination', on_delete=PROTECT)
+    is_return_transition = models.BooleanField(_("Is Return Transition"), default=False)
 
     def __str__(self):
         return 'Field Name:%s, %s -> %s' % (
