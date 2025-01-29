@@ -9,10 +9,10 @@ from workflow.models import TransitionApproval, PENDING
 
 class Ormworkflow(Workflowworkflow):
 
-    def get_available_approvals(self, as_user):
+    def get_available_approvals(self, as_user, is_return_transition=False):
         those_with_max_priority = With(
             TransitionApproval.objects.filter(
-                workflowmodel=self.workflowmodel, status=PENDING
+                workflowmodel=self.workflowmodel, status=PENDING, transition__meta__is_return_transition=is_return_transition
             ).values(
                 'workflowmodel', 'object_id', 'transition'
             ).annotate(min_priority=Min('priority'))
