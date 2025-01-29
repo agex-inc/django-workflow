@@ -109,8 +109,8 @@ class InstanceWorkflowModelObject(object):
         all_destination_state_ids = self.get_available_approvals(as_user=as_user).values_list('transition__destination_state', flat=True)
         return State.objects.filter(pk__in=all_destination_state_ids)
 
-    def get_available_approvals(self, as_user=None, destination_state=None, only_return_transitions=False):
-        qs = self.class_workflowmodel.get_available_approvals(as_user, only_return_transitions).filter(object_id=self.workflowmodel_object.pk)
+    def get_available_approvals(self, as_user=None, destination_state=None, include_return_transitions=False):
+        qs = self.class_workflowmodel.get_available_approvals(as_user, include_return_transitions).filter(object_id=self.workflowmodel_object.pk)
         if destination_state:
             qs = qs.filter(transition__destination_state=destination_state)
 

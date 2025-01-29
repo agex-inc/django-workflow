@@ -9,19 +9,19 @@ from workflow.models import TransitionApproval, PENDING
 
 class Ormworkflow(Workflowworkflow):
 
-    def get_available_approvals(self, as_user, only_return_transitions=False):
-        if only_return_transitions:
-            those_with_max_priority = With(
-            TransitionApproval.objects.filter(
-                workflowmodel=self.workflowmodel, status=PENDING, transition__meta__is_return_transition=only_return_transitions
-            ).values(
-                'workflowmodel', 'object_id', 'transition'
-            ).annotate(min_priority=Min('priority'))
-        )
-        else:
+    def get_available_approvals(self, as_user, include_return_transitions=False):
+        if include_return_transitions:
             those_with_max_priority = With(
                 TransitionApproval.objects.filter(
                     workflowmodel=self.workflowmodel, status=PENDING
+                ).values(
+                    'workflowmodel', 'object_id', 'transition'
+                ).annotate(min_priority=Min('priority'))
+            )
+        else:
+            those_with_max_priority = With(
+                TransitionApproval.objects.filter(
+                    workflowmodel=self.workflowmodel, status=PENDING, transition__meta__is_return_transition=(not include_return_transitions)
                 ).values(
                     'workflowmodel', 'object_id', 'transition'
                 ).annotate(min_priority=Min('priority'))
