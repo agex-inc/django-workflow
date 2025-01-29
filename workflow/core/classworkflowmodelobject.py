@@ -30,8 +30,8 @@ class ClassWorkflowModelObject(object):
         object_ids = list(approvals.values_list('object_id', flat=True))
         return self.wokflow_object_class.objects.filter(pk__in=object_ids)
 
-    def get_available_approvals(self, as_user, include_return_transitions=False):
-        return self._workflow_workflow.get_available_approvals(as_user, include_return_transitions=include_return_transitions)
+    def get_available_approvals(self, as_user, only_return_transitions=False):
+        return self._workflow_workflow.get_available_approvals(as_user, only_return_transitions=only_return_transitions)
 
     @property
     def initial_state(self):
