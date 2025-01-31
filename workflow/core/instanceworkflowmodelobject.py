@@ -88,17 +88,26 @@ class InstanceWorkflowModelObject(object):
             return Transition.objects.filter(workflowmodel=self.workflowmodel, workflowmodel_object=self.workflowmodel_object, iteration__lte=iteration)
 
         try:
-            # recent_iteration = self.recent_approval.transition.iteration if self.recent_approval else 0
-            # jumped_transition = getattr(self.workflowmodel_object, self.field_name + "_transitions").filter(
-            #     iteration__gte=recent_iteration, destination_state=state, status=PENDING
-            # ).earliest("iteration")
+            recent_iteration = self.recent_approval.transition.iteration if self.recent_approval else 0
+            jumped_transition = getattr(self.workflowmodel_object, self.field_name + "_transitions").filter(
+                iteration__gte=recent_iteration, destination_state=state, status=PENDING
+            ).earliest("iteration")
 
             # Disabling this part to not approve the previous states, allowing the user to go back and execute again the flows if needed.
-            # jumped_transitions = _transitions_before(jumped_transition.iteration).filter(status=PENDING)
-            # for approval in TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True)):
-            #     approval.status = JUMPED
-            #     approval.save()
-            # jumped_transitions.update(status=JUMPED)
+            
+            # First the transitions are approved so the hooks run
+            jumped_transitions = _transitions_before(jumped_transition.iteration).filter(status=PENDING)
+            for approval in TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True)):
+                approval.status = JUMPED
+                approval.save()
+            jumped_transitions.update(status=JUMPED)
+
+            # Then we set the status back to pending for those cases where the user wants to go back and execute the flow again
+            for approval in TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True)):
+                approval.status = PENDING
+                approval.save()
+            jumped_transitions.update(status=PENDING)
+
             self.set_state(state)
             self.workflowmodel_object.save()
 
