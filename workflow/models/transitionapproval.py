@@ -69,3 +69,6 @@ class TransitionApproval(BaseModel):
             workflowmodel=self.workflowmodel,
             transition=self.transition,
         ).exclude(pk=self.pk)
+    
+    def __str__(self):
+        return f"{self.workflowmodel_object} - {self.transition} - {self.status}"

@@ -93,17 +93,16 @@ class InstanceWorkflowModelObject(object):
                 iteration__gte=recent_iteration, destination_state=state, status=PENDING
             ).earliest("iteration")
 
-            # Disabling this part to not approve the previous states, allowing the user to go back and execute again the flows if needed.
-            
             # First the transitions are approved so the hooks run
             jumped_transitions = _transitions_before(jumped_transition.iteration).filter(status=PENDING)
-            for approval in TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True)):
+            transitions_list = TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True))
+            for approval in transitions_list:
                 approval.status = JUMPED
                 approval.save()
             jumped_transitions.update(status=JUMPED)
 
             # Then we set the status back to pending for those cases where the user wants to go back and execute the flow again
-            for approval in TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True)):
+            for approval in transitions_list:
                 approval.status = PENDING
                 approval.save()
             jumped_transitions.update(status=PENDING)
