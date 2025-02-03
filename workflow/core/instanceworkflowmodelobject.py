@@ -83,31 +83,22 @@ class InstanceWorkflowModelObject(object):
             return None
 
     @transaction.atomic
-    def jump_to(self, state):
+    def jump_to(self, source_state, next_state):
         def _transitions_before(iteration):
             return Transition.objects.filter(workflowmodel=self.workflowmodel, workflowmodel_object=self.workflowmodel_object, iteration__lte=iteration)
 
         try:
             recent_iteration = self.recent_approval.transition.iteration if self.recent_approval else 0
             jumped_transition = getattr(self.workflowmodel_object, self.field_name + "_transitions").filter(
-                iteration__gte=recent_iteration, destination_state=state, status=PENDING
+                iteration__gte=recent_iteration, source_state=source_state, destination_state=next_state, status=PENDING
             ).earliest("iteration")
 
-            # First the transitions are approved so the hooks run
-            jumped_transitions = _transitions_before(jumped_transition.iteration).filter(status=PENDING)
-            transitions_list = TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True))
-            for approval in transitions_list:
-                approval.status = JUMPED
-                approval.save()
-            jumped_transitions.update(status=JUMPED)
-
-            # Then we set the status back to pending for those cases where the user wants to go back and execute the flow again
-            for approval in transitions_list:
-                approval.status = PENDING
-                approval.save()
-            jumped_transitions.update(status=PENDING)
-
-            self.set_state(state)
+            jumped_transitions = _transitions_before(jumped_transition.iteration).filter(status=PENDING, source_state=source_state, destination_state=next_state)
+            approval = TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True)).first()
+            if approval:
+                with self._approve_signal(approval):
+                    self.workflowmodel_object.save()
+            self.set_state(next_state)
             self.workflowmodel_object.save()
 
         except Transition.DoesNotExist:
