@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 
 class Template(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
+    subject = models.CharField(max_length=160, null=True, blank=True)
     text = models.TextField(
         help_text=mark_safe("""
         You can use variables like {borrower_name} and {seller_name} which will be automatically replaced with the corresponding value.

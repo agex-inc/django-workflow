@@ -13,7 +13,7 @@ except IOError as err:
 
 setup(
     name='django-workflow',
-    version='3.3.15',
+    version='3.3.16',
     author='Ahmet DAL',
     author_email='ceahmetdal@gmail.com',
     packages=find_packages(),
