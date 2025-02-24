@@ -13,6 +13,7 @@ class Template(models.Model):
             <li>Use {amount} for the trade amount</li>
             <li>Use {trade_id} for the trade ID</li>
             <li>Use {trade_title} for the trade title</li>
+            <li>Use {trade_date} for the trade date</li>
             <li>Use {status} for the trade status</li>
             <li>Use {due_date} for the trade due date</li>
         </ul>
