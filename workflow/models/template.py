@@ -17,6 +17,7 @@ class Template(models.Model):
             <li>Use {status} for the trade status</li>
             <li>Use {due_date} for the trade due date</li>
         </ul>
+        *Note: {days_delta} to be used only on Task Templates, it represents the number of days between the trade payback date and the current date.
         """)
     )
     channel = models.ForeignKey('Channel', on_delete=models.CASCADE)
