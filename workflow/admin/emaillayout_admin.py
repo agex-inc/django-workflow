@@ -4,9 +4,9 @@ from workflow.models import EmailLayout
 
 
 class EmailLayoutAdmin(admin.ModelAdmin):
-    list_display = ('name', 'actor', 'subject', 'updated_at')
-    search_fields = ('name', 'subject', 'actor')
-    readonly_fields = ['updated_at']
+    list_display = ('id','name', 'updated_at')
+    search_fields = ('id','name')
+    readonly_fields = ['id','updated_at']
  
 
 admin.site.register(EmailLayout, EmailLayoutAdmin)

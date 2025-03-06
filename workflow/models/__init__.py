@@ -14,3 +14,4 @@ from .template import *
 from .actor import *
 from .notification_template import *
 from .email_layout import *
+from .actor_email_layout import *

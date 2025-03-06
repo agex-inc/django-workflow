@@ -4,6 +4,7 @@ from workflow.admin.transitionapprovalmeta import *
 from workflow.admin.transitionmeta import *
 from workflow.admin.workflowmodel import *
 from workflow.admin.emaillayout_admin import *
+from workflow.admin.actor_emaillayout_admin import *
 from workflow.models import State
 from workflow.models import Channel
 from workflow.models import Template
