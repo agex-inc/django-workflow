@@ -26,6 +26,7 @@ class State(BaseModel):
 
     slug = models.SlugField(unique=True, null=True, blank=True)
     label = models.CharField(max_length=50)
+    action_name = models.CharField(max_length=50, null=True, blank=True)
     description = models.CharField(_("Description"), max_length=200, null=True, blank=True)
 
     def __str__(self):
