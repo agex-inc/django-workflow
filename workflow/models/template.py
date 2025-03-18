@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.safestring import mark_safe
 
 class Template(models.Model):
+    slug = models.SlugField(unique=True, null=True, blank=True)
     name = models.CharField(max_length=100, null=True, blank=True)
     subject = models.CharField(max_length=160, null=True, blank=True)
     text = models.TextField(
@@ -18,6 +19,7 @@ class Template(models.Model):
             <li>Use {due_date} for the trade due date</li>
         </ul>
         *Note: {days_delta} to be used only on Task Templates, it represents the number of days between the trade payback date and the current date.
+        **Important: Internal Notifications should not exceed 250 characters.
         """)
     )
     channel = models.ForeignKey('Channel', on_delete=models.CASCADE)
