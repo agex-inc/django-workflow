@@ -86,18 +86,45 @@ class InstanceWorkflowModelObject(object):
     def jump_to(self, source_state, next_state):
         def _transitions_before(iteration):
             return Transition.objects.filter(workflowmodel=self.workflowmodel, workflowmodel_object=self.workflowmodel_object, iteration__lte=iteration)
+        def _transitions_after(iteration):
+            return Transition.objects.filter(workflowmodel=self.workflowmodel, workflowmodel_object=self.workflowmodel_object, iteration__lte=iteration)
 
         try:
+            # recent_iteration = self.recent_approval.transition.iteration if self.recent_approval else 0
+            # jumped_transition = getattr(self.workflowmodel_object, self.field_name + "_transitions").filter(
+            #      iteration__gte=recent_iteration, destination_state=next_state
+            #  ).filter(Q(status=PENDING) | Q(status=JUMPED)).earliest("iteration")
+ 
+            # jumped_transitions = _transitions_before(jumped_transition.iteration).filter(Q(status=PENDING) | Q(status=JUMPED))
+            # print(jumped_transitions)
+            # approvals = TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True))
+            # print("----------------- approvals -----------------")
+            # print(approvals)
+            # for approval in approvals:
+            #      approval.status = JUMPED
+            #      approval.save()
+            # jumped_transitions.update(status=JUMPED)
+
             recent_iteration = self.recent_approval.transition.iteration if self.recent_approval else 0
             jumped_transition = getattr(self.workflowmodel_object, self.field_name + "_transitions").filter(
-                iteration__gte=recent_iteration, source_state=source_state, destination_state=next_state, status=PENDING
-            ).earliest("iteration")
+                 iteration__gte=recent_iteration, destination_state=next_state
+             ).filter(Q(status=PENDING) | Q(status=JUMPED)).earliest("iteration")
+            
+            jumped_transition_approval = TransitionApproval.objects.filter(pk=jumped_transition.pk)
+            jumped_transition_approval.update(status=JUMPED)
+            # jumped_transition.update(status=JUMPED)
+ 
+            after_transitions = _transitions_after(jumped_transition.iteration).filter(Q(status=PENDING) | Q(status=JUMPED))
+            # print(jumped_transitions)
+            # approvals = TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True))
+            # print("----------------- approvals -----------------")
+            # print(approvals)
+            # for approval in approvals:
+            #      approval.status = JUMPED
+            #      approval.save()
+            # jumped_transitions.update(status=JUMPED)
 
-            jumped_transitions = _transitions_before(jumped_transition.iteration).filter(status=PENDING, source_state=source_state, destination_state=next_state)
-            approval = TransitionApproval.objects.filter(pk__in=jumped_transitions.values_list("transition_approvals__pk", flat=True)).first()
-            if approval:
-                with self._approve_signal(approval):
-                    self.workflowmodel_object.save()
+
             self.set_state(next_state)
             self.workflowmodel_object.save()
 
