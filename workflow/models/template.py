@@ -39,6 +39,6 @@ class Template(models.Model):
         return self.template.format(**kwargs)
     
     def clean(self): 
-        if self.slug and "internal" in self.slug.lower():
+        if self.channel.name == "Internal":
             if len(self.text) > 130:
                 raise ValidationError({'text': 'For internal templates, the text cannot exceed 130 characters.'})
