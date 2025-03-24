@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.core.exceptions import ValidationError
 
 class Template(models.Model):
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -36,3 +37,8 @@ class Template(models.Model):
     
     def render_template(self, **kwargs):
         return self.template.format(**kwargs)
+    
+    def clean(self): 
+        if self.slug and "internal" in self.slug.lower():
+            if len(self.text) > 130:
+                raise ValidationError({'text': 'For internal templates, the text cannot exceed 130 characters.'})
