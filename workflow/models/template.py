@@ -8,10 +8,10 @@ class Template(models.Model):
     subject = models.CharField(max_length=160, null=True, blank=True)
     text = models.TextField(
         help_text=mark_safe("""
-        You can use variables like {borrower_name} and {seller_name} which will be automatically replaced with the corresponding value.
+        You can use variables like {trader_name} and {barn_manager_name} which will be automatically replaced with the corresponding value.
         <ul>
-            <li>Use {borrower_name} for the borrower's name</li>
-            <li>Use {seller_name} for the seller's name</li>
+            <li>Use {trader_name} for the borrower's name</li>
+            <li>Use {barn_manager_name} for the seller's name</li>
             <li>Use {amount} for the trade amount</li>
             <li>Use {trade_id} for the trade ID</li>
             <li>Use {trade_title} for the trade title</li>
